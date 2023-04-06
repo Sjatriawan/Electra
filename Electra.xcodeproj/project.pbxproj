@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0514D8F029DE6072002C525B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514D8EF29DE6072002C525B /* Home.swift */; };
 		09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */; };
 		09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */; };
 		09E9CAB029DD1FC0000B8FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09E9CAAF29DD1FC0000B8FE9 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0514D8EF29DE6072002C525B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		09E9CAA829DD1FBF000B8FE9 /* Electra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Electra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraApp.swift; sourceTree = "<group>"; };
 		09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05E90D7329DE610D00A1D1F9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0514D8EF29DE6072002C525B /* Home.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		09E9CA9F29DD1FBF000B8FE9 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				46FB82B429DD889A00EF4571 /* Detail */,
+				05E90D7329DE610D00A1D1F9 /* Home */,
 				09E9CAD629DD202E000B8FE9 /* Getting Started */,
 			);
 			path = Presentation;
@@ -293,6 +304,7 @@
 				46FB82B629DD88E300EF4571 /* DetailScreen.swift in Sources */,
 				09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */,
 				09E9CADA29DD217B000B8FE9 /* SettingUp.swift in Sources */,
+				0514D8F029DE6072002C525B /* Home.swift in Sources */,
 				09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */,
 				09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */,
 			);
