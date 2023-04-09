@@ -14,17 +14,17 @@ struct OnBoardingScreen: View {
     var body: some View {
         NavigationView{
             VStack{
-//                TabView(selection: $index){
-//                    ForEach(0 ..< 3) { i in
-//                        Image("image_\(i)")
-//                            .resizable()
-//                            .frame(width: 250, height: 250)
-//                            .padding()
-//                            .aspectRatio( contentMode: .fit)
-//
-//                    }
-//                }
-//                .tabViewStyle(PageTabViewStyle())
+                TabView(selection: $index){
+                    ForEach(0 ..< 3) { i in
+                        Image("image_\(i)")
+                            .resizable()
+                            .frame(width: 250, height: 250)
+                            .padding()
+                            .aspectRatio( contentMode: .fit)
+
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle())
                 
     
 //                HStack(spacing: 4){
