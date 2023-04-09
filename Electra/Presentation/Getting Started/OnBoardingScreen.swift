@@ -27,14 +27,14 @@ struct OnBoardingScreen: View {
 //                .tabViewStyle(PageTabViewStyle())
                 
     
-                HStack(spacing: 4){
-                    ForEach(0 ..< 3) { i in
-                        Color(.black)
-                            .opacity(i == index ? 1 : 0.5)
-                            .frame(width: i == index ? 8 : 16, height: 8)
-                            .clipShape(RoundedRectangle(cornerRadius:20))
-                    }
-                }
+//                HStack(spacing: 4){
+//                    ForEach(0 ..< 3) { i in
+//                        Color(.black)
+//                            .opacity(i == index ? 1 : 0.5)
+//                            .frame(width: i == index ? 8 : 16, height: 8)
+//                            .clipShape(RoundedRectangle(cornerRadius:20))
+//                    }
+//                }
                 VStack{
                     Text("Electricity")
                         .fontWeight(.bold)
