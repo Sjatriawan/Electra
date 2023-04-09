@@ -115,7 +115,7 @@ struct HomeView: View{
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(width: 121, height: 44)
-                            .background(Color("MiniButtonColor"))
+                            .background(Color("tambahButtonColor"))
                             .cornerRadius(12)
                     })
             }
@@ -147,7 +147,7 @@ struct ProgressBar: View {
             Circle()
                 .trim(from: 0, to: 0.45)
                 .stroke(
-                    Color("MiniButtonColor"), style: StrokeStyle(lineWidth: 16, lineCap: .round))
+                    Color("tambahButtonColor"), style: StrokeStyle(lineWidth: 16, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
             VStack{
                 Text("45%")
