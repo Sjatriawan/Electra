@@ -20,23 +20,25 @@ struct OnBoardingScreen: View {
                             .resizable()
                             .frame(width: 260, height: 285)
                             .scaledToFill()
-//                            .padding(100)
+//                            .padding(20)
+                            .offset(x: 0, y: 50)
 //                            .aspectRatio( contentMode: .fit)
-//                            .background(Color.orange)
+//                            .background(Color.blue)
                         
                     }
                 }
                 .tabViewStyle(PageTabViewStyle())
+//                .position(x: 0, y: 100)
 //                .background(Color.orange)
                 
-                VStack(spacing: 25){
+                VStack(spacing: 35){
                     Text("Khawatir dengan tagihan listrikmu?")
                         .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(Color("textOnboarding"))
+                        .foregroundColor(Color("titleOnboarding"))
 //                        .padding(25)
                     
                     Text("Jangan panik! Ayo kita hitung tagihan listrik bulananmu")
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color("captionOnboarding"))
                         .multilineTextAlignment(.center)
                     
                 }
