@@ -26,32 +26,31 @@ struct OnBoardingScreen: View {
                 }
                 .tabViewStyle(PageTabViewStyle())
                 
+                VStack{
+                    Text("Khawatir dengan tagihan listrikmu?")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(Color("textOnboarding"))
+                        .padding()
+
+                    Text("Jangan panik! Ayo kita hitung tagihan listrik bulananmu")
+                        .foregroundColor(Color.gray)
+                        .multilineTextAlignment(.center)
+
+                }.padding()
                 
-                HStack(spacing: 4){
+                HStack(spacing: 8){
                     ForEach(0 ..< 3) { i in
-                        Color(.black)
+                        Color("Box")
                             .opacity(i == index ? 1 : 0.5)
-                            .frame(width: i == index ? 8 : 16, height: 8)
+                            .frame(width: i == index ? 20 : 8, height: 8)
                             .clipShape(RoundedRectangle(cornerRadius:20))
                     }
                 }
-                VStack{
-                    Text("Electricity")
-                        .fontWeight(.bold)
-                        .padding()
-                    
-                    Text("Kamu bisa hitung estimasi biaya listrik bulanan agar sesuai dengan anggaran biaya bulananmu")
-                        .foregroundColor(Color.gray)
-                        .multilineTextAlignment(.center)
-                    
-                }.padding()
-                
-                
                 
                 NavigationLink(destination: BudgetingPlan()) {
                     Text("Mulai")
                         .frame(maxWidth: .infinity, maxHeight: 50)
-                        .background(Color.blue)
+                        .background(Color("Box"))
                         .foregroundColor(Color.white)
                         .fontWeight(.bold)
                         .cornerRadius(8)

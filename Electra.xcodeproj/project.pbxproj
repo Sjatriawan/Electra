@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		006702E329E02D32000C461E /* Kalkulasi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006702E229E02D32000C461E /* Kalkulasi.swift */; };
+		0067030129E3D96B000C461E /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0067030029E3D96B000C461E /* Homepage.swift */; };
 		0514D8F029DE6072002C525B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514D8EF29DE6072002C525B /* Home.swift */; };
 		09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */; };
 		09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		006702E229E02D32000C461E /* Kalkulasi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kalkulasi.swift; sourceTree = "<group>"; };
+		0067030029E3D96B000C461E /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		0514D8EF29DE6072002C525B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		09E9CAA829DD1FBF000B8FE9 /* Electra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Electra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraApp.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				0514D8EF29DE6072002C525B /* Home.swift */,
+				0067030029E3D96B000C461E /* Homepage.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				46FB82B629DD88E300EF4571 /* DetailScreen.swift in Sources */,
 				09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */,
 				006702E329E02D32000C461E /* Kalkulasi.swift in Sources */,
+				0067030129E3D96B000C461E /* Homepage.swift in Sources */,
 				33C9308B29DE833700E29629 /* BudgetingPlan.swift in Sources */,
 				09E9CADA29DD217B000B8FE9 /* SettingUp.swift in Sources */,
 				0514D8F029DE6072002C525B /* Home.swift in Sources */,
