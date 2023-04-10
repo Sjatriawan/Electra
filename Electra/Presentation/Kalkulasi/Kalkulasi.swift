@@ -11,18 +11,6 @@ struct Kalkulasi: View {
     var body: some View {
         NavigationView {
             VStack{
-                //            NavigationView{
-                //                Text("")
-                //            }
-                //            .navigationTitle("Kalkulasi")
-                //            .navigationBarTitleDisplayMode(.inline)
-                //            .toolbar{
-                //                ToolbarItem(placement: .confirmationAction){
-                //                    Button("Simpan"){
-                //                        print("saved")
-                //                    }
-                //                }
-                //            }
                 Spacer()
                     .frame(height: 20)
                 Grid(alignment: .leading,
