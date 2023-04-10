@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Home: View {
+    @State var addItem: Bool = false
+    
     var body: some View {
         NavigationStack {
             TabView{
@@ -20,6 +22,7 @@ struct Home: View {
                             Spacer()
                             NavigationLink {
                                 BudgetingPlan()
+                                    .navigationBarBackButtonHidden(true)
                             } label: {
                                 Image(systemName: "square.and.pencil")
                                     .font(.system(size: 22, weight: .regular, design: .default))
@@ -75,8 +78,8 @@ struct Home: View {
                             .font(.headline)
                             .foregroundColor(Color("TextColor"))
                         Spacer()
-                        NavigationLink {
-                            Kalkulasi()
+                        Button {
+                            addItem.toggle()
                         } label: {
                             Text("Tambah")
                                 .font(.headline)
@@ -85,11 +88,16 @@ struct Home: View {
                                 .background(Color("tambahButtonColor"))
                                 .cornerRadius(12)
                         }
+                        .sheet(isPresented: $addItem){
+                            Kalkulasi(addItem: $addItem)
+                                .presentationDetents([.medium, .large])
+                                
+                        }
                     }
                     .padding(.horizontal, 32)
                     List{
                         NavigationLink{
-                            DetailScreen().navigationBarBackButtonHidden(true)
+                            DetailScreen()
                         } label: {
                             ListContent()
                         }
@@ -119,9 +127,10 @@ struct Home: View {
                 UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
             }
             .accentColor(Color("Box"))
+            .navigationTitle("")
+            }
         }
     }
-}
 
 struct ProgressBar: View {
     var body: some View{

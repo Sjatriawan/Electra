@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Kalkulasi: View {
+    @Binding var addItem: Bool
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -102,6 +104,6 @@ struct Kalkulasi: View {
 
 struct Kalkulasi_Previews: PreviewProvider {
     static var previews: some View {
-        Kalkulasi()
+        Kalkulasi(addItem: .constant(false))
     }
 }
