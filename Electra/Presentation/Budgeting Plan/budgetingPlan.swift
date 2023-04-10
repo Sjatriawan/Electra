@@ -10,6 +10,7 @@ import SwiftUI
 struct BudgetingPlan: View {
     @State private var budgetInput: String = ""
     @State private var tarifInput: String = ""
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -60,19 +61,21 @@ struct BudgetingPlan: View {
                             NavigationLink {
                                 Home()
                                     .navigationBarBackButtonHidden(true)
-                            } label: {
-                                Text("Simpan")
                             }
+                        label: {
+                            Text("Simpan")
+                        }
                             
-                            .frame(maxWidth: .infinity, maxHeight: 58)
-                            .background(CustomColor.boxColor)
-                            .foregroundColor(Color.white)
-                            .font(.headline)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 32)
+                        .frame(maxWidth: .infinity, maxHeight: 58)
+                        .background(CustomColor.boxColor)
+                        .foregroundColor(Color.white)
+                        .font(.headline)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 32)
+                        .disabled(budgetInput.isEmpty || tarifInput.isEmpty)
+                            
                         }
                     }
-                    
                 }
             }.background(
                 CustomColor.boxColor

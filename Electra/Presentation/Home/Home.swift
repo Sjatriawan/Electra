@@ -63,7 +63,7 @@ struct BlueBox: View{
                             Text("Rp")
                                 .font(.system(size: 12, weight: .bold, design: .default))
                                 .foregroundColor(.white)
-                            Text("90,000")
+                            Text("90000")
                                 .font(.system(size: 22, weight: .bold, design: .default))
                                 .foregroundColor(.white)
                         }
