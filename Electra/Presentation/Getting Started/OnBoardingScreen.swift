@@ -48,7 +48,7 @@ struct OnBoardingScreen: View {
                 
                 
                 
-                NavigationLink(destination: SettingUp()) {
+                NavigationLink(destination: BudgetingPlan()) {
                     Text("Mulai")
                         .frame(maxWidth: .infinity, maxHeight: 50)
                         .background(Color.blue)
