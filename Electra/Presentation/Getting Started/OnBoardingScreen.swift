@@ -18,25 +18,31 @@ struct OnBoardingScreen: View {
                     ForEach(0 ..< 3) { i in
                         Image("image_\(i)")
                             .resizable()
-                            .frame(width: 250, height: 250)
-                            .padding()
-                            .aspectRatio( contentMode: .fit)
+                            .frame(width: 260, height: 285)
+                            .scaledToFill()
+//                            .padding(100)
+//                            .aspectRatio( contentMode: .fit)
+//                            .background(Color.orange)
                         
                     }
                 }
                 .tabViewStyle(PageTabViewStyle())
+//                .background(Color.orange)
                 
-                VStack{
+                VStack(spacing: 25){
                     Text("Khawatir dengan tagihan listrikmu?")
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(Color("textOnboarding"))
-                        .padding()
-
+//                        .padding(25)
+                    
                     Text("Jangan panik! Ayo kita hitung tagihan listrik bulananmu")
                         .foregroundColor(Color.gray)
                         .multilineTextAlignment(.center)
-
-                }.padding()
+                    
+                }
+                .padding()
+//                .background(Color.orange)
+                
                 
                 HStack(spacing: 8){
                     ForEach(0 ..< 3) { i in
@@ -46,6 +52,7 @@ struct OnBoardingScreen: View {
                             .clipShape(RoundedRectangle(cornerRadius:20))
                     }
                 }
+                .padding(30)
                 
                 NavigationLink(destination: BudgetingPlan()) {
                     Text("Mulai")
