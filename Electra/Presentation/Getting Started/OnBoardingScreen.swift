@@ -12,7 +12,7 @@ let customFont = "SF-Pro-Text-Bold-Italic"
 struct OnBoardingScreen: View {
     @State var index = 0
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 TabView(selection: $index){
                     ForEach(0 ..< 3) { i in

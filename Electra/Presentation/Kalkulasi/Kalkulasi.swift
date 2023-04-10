@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Kalkulasi: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
                 Spacer()
                     .frame(height: 20)
