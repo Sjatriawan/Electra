@@ -8,21 +8,11 @@
 import SwiftUI
 
 struct Kalkulasi: View {
+    @Binding var addItem: Bool
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
-                //            NavigationView{
-                //                Text("")
-                //            }
-                //            .navigationTitle("Kalkulasi")
-                //            .navigationBarTitleDisplayMode(.inline)
-                //            .toolbar{
-                //                ToolbarItem(placement: .confirmationAction){
-                //                    Button("Simpan"){
-                //                        print("saved")
-                //                    }
-                //                }
-                //            }
                 Spacer()
                     .frame(height: 20)
                 Grid(alignment: .leading,
@@ -114,6 +104,6 @@ struct Kalkulasi: View {
 
 struct Kalkulasi_Previews: PreviewProvider {
     static var previews: some View {
-        Kalkulasi()
+        Kalkulasi(addItem: .constant(false))
     }
 }

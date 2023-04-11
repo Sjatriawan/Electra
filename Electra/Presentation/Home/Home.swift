@@ -8,134 +8,137 @@
 import SwiftUI
 
 struct Home: View {
+    @State var addItem: Bool = false
+    
     var body: some View {
-        TabView{
-            VStack(spacing:38){
-                BlueBox()
-                ScrollView{
-                    HomeView()
-                }
-            }
-            .edgesIgnoringSafeArea(.top)
-            .tabItem{
-                Image(systemName: "house")
-                Text("Home")
-            }
-            Text("Info")
-                .tabItem{
-                    Image(systemName: "questionmark.circle")
-                    Text("Info")
-                }
-        }
-        .onAppear(){
-            UITabBar.appearance().isTranslucent = false
-            UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
-//            UITabBar.appearance().backgroundColor = #colorLiteral(red: 0.2980392157, green: 0.4901960784, blue: 0.8588235294, alpha: 1)
-        }
-        .accentColor(Color("Box"))
-//        .accentColor(.white)
-    }
-}
-struct BlueBox: View{
-    var body: some View{
-        VStack(spacing: 22){
-            HStack{
-                Text("Atur Budgetmu")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    Image(systemName: "square.and.pencil")
-                        .font(.system(size: 22, weight: .regular, design: .default))
-                        .foregroundColor(.white)
-                    
-                })
-            }
-            HStack{
+        NavigationStack {
+            TabView{
                 VStack{
-                    VStack(alignment: .leading, spacing: 8){
-                        Text("Biaya listrikmu saat ini")
-                            .font(.system(size: 15, weight: .medium, design: .default))
-                            .foregroundColor(Color("IconTabBar"))
-                        HStack (alignment: .bottom){
-                            Text("Rp")
-                                .font(.system(size: 12, weight: .bold, design: .default))
+                    VStack(spacing: 22){
+                        HStack{
+                            Text("Atur Budgetmu")
+                                .font(.headline)
                                 .foregroundColor(.white)
-                            Text("90000")
-                                .font(.system(size: 22, weight: .bold, design: .default))
-                                .foregroundColor(.white)
+                            Spacer()
+                            NavigationLink {
+                                BudgetingPlan()
+                                    .navigationBarBackButtonHidden(true)
+                            } label: {
+                                Image(systemName: "square.and.pencil")
+                                    .font(.system(size: 22, weight: .regular, design: .default))
+                                    .foregroundColor(.white)
+                            }
                         }
                         HStack{
-                            Text("Sisa budget")
-                                .font(.system(size: 12, weight: .medium, design: .default))
-                                .foregroundColor(Color("IconTabBar"))
-                            Text("110,000")
-                                .font(.system(size: 12, weight: .medium, design: .default))
-                                .foregroundColor(.white)
+                            VStack{
+                                VStack(alignment: .leading, spacing: 8){
+                                    Text("Biaya listrikmu saat ini")
+                                        .font(.system(size: 15, weight: .medium, design: .default))
+                                        .foregroundColor(Color("IconTabBar"))
+                                    HStack (alignment: .bottom){
+                                        Text("Rp")
+                                            .font(.system(size: 13, weight: .bold, design: .default))
+                                            .foregroundColor(.white)
+                                        Text("90,000")
+                                            .font(.system(size: 22, weight: .bold, design: .default))
+                                            .foregroundColor(.white)
+                                    }
+                                    HStack(spacing: 3){
+                                        Text("Sisa budget")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(Color("IconTabBar"))
+                                        Text("Rp.")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(.white)
+                                        Text("110,000")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(.white)
+                                    }
+                                    HStack(spacing: 3){
+                                        Text("Sisa daya listrik")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(Color("IconTabBar"))
+                                        Text("73.3")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(.white)
+                                        Text("kWh")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(.white)
+                                    }
+                                    
+                                }
+                            }
+                            
+                            Spacer()
+                            ProgressBar()
                         }
-                        HStack{
-                            Text("Sisa daya listrik")
-                                .font(.system(size: 12, weight: .medium, design: .default))
-                                .foregroundColor(Color("IconTabBar"))
-                            Text("73.3kWh")
-                                .font(.system(size: 12, weight: .medium, design: .default))
+                        .frame(width: 328, height: 129)
+                    }
+                    .padding(.horizontal, 16.5)
+                    .padding(.vertical, 64)
+                    .background(LinearGradient(gradient: Gradient(colors: [Color("ShadowBox1"), Color("ShadowBox2")]), startPoint: .top, endPoint: .center))
+                    .cornerRadius(32)
+                    .shadow(color: Color("Shadow"), radius: 24, x: 8, y: 2)
+                    Spacer()
+                        .frame(height: 38)
+                    HStack{
+                        Text("Peralatan Elektronik")
+                            .font(.headline)
+                            .foregroundColor(Color("TextColor"))
+                        Spacer()
+                        Button {
+                            addItem.toggle()
+                        } label: {
+                            Text("Tambah")
+                                .font(.headline)
                                 .foregroundColor(.white)
+                                .frame(width: 121, height: 44)
+                                .background(Color("tambahButtonColor"))
+                                .cornerRadius(12)
+                        }
+                        .sheet(isPresented: $addItem){
+                            Kalkulasi(addItem: $addItem)
+                                .presentationDetents([.medium, .large])
+                                
                         }
                     }
+                    .padding(.horizontal, 32)
+                    List{
+                        NavigationLink{
+                            DetailScreen()
+                        } label: {
+                            ListContent()
+                        }
+                        .listRowSeparator(.hidden)
+                    }
+                    .listStyle(.plain)
+                    .padding(16)
                 }
-                Spacer()
-                ProgressBar()
+                .edgesIgnoringSafeArea(.top)
+                .tabItem{
+                    Image(systemName: "house")
+                    Text("Home")
+                        .onAppear(){
+                            UITableView.appearance().separatorStyle = .none
+                        }
+                        .listStyle(.plain)
+                        .padding(16)
+                }
+                Text("Info")
+                    .tabItem{
+                        Image(systemName: "questionmark.circle")
+                        Text("Info")
+                    }
             }
-            .frame(width: 328, height: 129)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 64)
-        .background(LinearGradient(gradient: Gradient(colors: [Color("ShadowBox1"), Color("ShadowBox2")]), startPoint: .top, endPoint: .center))
-        .cornerRadius(32)
-        .shadow(color: Color("Shadow"), radius: 24, x: 8, y: 2)
-    }
-}
-
-struct HomeView: View{
-    var body: some View{
-        VStack(spacing: 22){
-            HStack{
-                Text("Peralatan Elektronik")
-                    .font(.headline)
-                    .foregroundColor(Color("TextColor"))
-                Spacer()
-                Button(
-                    action: {
-                        
-                    },
-                    label: {
-                        Text("Tambah")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(width: 121, height: 44)
-                            .background(Color("tambahButtonColor"))
-                            .cornerRadius(12)
-                    })
+            .onAppear(){
+                UITabBar.appearance().isTranslucent = false
+                UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
             }
-            .padding(.horizontal, 32)
-            VStack(spacing: 22){
-                List()
-                List()
-                List()
-                List()
-                List()
-                List()
-                List()
-                List()
-                List()
-                List()
+            .accentColor(Color("Box"))
+            .navigationTitle("")
             }
-            .padding(.horizontal, 32)
         }
     }
-}
 
 struct ProgressBar: View {
     var body: some View{
@@ -157,37 +160,29 @@ struct ProgressBar: View {
                     .font(.system(size: 11, weight: .regular, design: .default))
                     .foregroundColor(.white)
             }
-            
         }
     }
 }
 
-struct List: View{
+struct ListContent: View{
     var body: some View{
         HStack(spacing: 16){
-            Text("4x")
+            Text("1x")
                 .font(.system(size: 12, weight: .medium, design: .default))
                 .foregroundColor(Color("TextColor"))
             VStack(alignment: .leading, spacing: 4){
-                Text("Lampu Rumah")
+                Text("Kulkas Mini")
                     .font(.system(size: 15, weight: .medium, design: .default))
                     .foregroundColor(Color("TextColor"))
-                Text("12 jam/hari")
+                Text("24 jam/hari")
                     .font(.caption)
                     .italic()
                     .foregroundColor(Color("TextColor"))
             }
             Spacer()
-            Text("Rp10,800")
+            Text("Rp86,400")
                 .font(.system(size: 15, weight: .semibold, design: .default))
                 .foregroundColor(Color("TextColor"))
-            Button(action: {
-                
-            }, label: {
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 22, weight: .regular, design: .default))
-                    .foregroundColor(Color("Chevron"))
-            })
         }
     }
 }

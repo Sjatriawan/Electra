@@ -38,6 +38,7 @@ struct SettingUp: View {
                             .foregroundColor(Color.gray)
                         TextField("Budget", text: $budgetInput)
                     }
+                    .keyboardType(.numberPad)
                     .padding(.vertical, 14)
                     .padding(.horizontal, 15)
                     .background(Color.white)
