@@ -10,6 +10,7 @@ import SwiftUI
 struct BudgetingPlan: View {
     @State private var budgetInput: String = ""
     @State private var tarifInput: String = ""
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -39,8 +40,12 @@ struct BudgetingPlan: View {
                                         .foregroundColor(CustomColor.textColor)
                                     TextField("Target Tagihan Listrik/Bulan", text: $budgetInput)
                                         .font(.system(size: 15, weight: .regular))
-                                        .overlay(
-                                            VStack{Divider().offset(x: 0, y: 15)})
+                                        .overlay{
+                                            Divider()
+                                                .background(Color("textFieldLineSeparator"))
+                                                .offset(x: 0, y: 20)
+                                                .frame(width: 212)
+                                        }
                                 }
                                 .padding(.horizontal, 32)
                                 .padding(.bottom, 22)
@@ -50,7 +55,12 @@ struct BudgetingPlan: View {
                                         .foregroundColor(CustomColor.textColor)
                                     TextField("Tarif Listrik/kWh", text: $tarifInput)
                                         .font(.system(size: 15, weight: .regular))
-                                        .overlay(VStack{Divider().offset(x: 0, y: 15)})
+                                        .overlay{
+                                            Divider()
+                                                .background(Color("textFieldLineSeparator"))
+                                                .offset(x: 0, y: 20)
+                                                .frame(width: 250)
+                                        }
                                 }
                                 .padding(.horizontal, 32)
                             }
@@ -60,19 +70,21 @@ struct BudgetingPlan: View {
                             NavigationLink {
                                 Home()
                                     .navigationBarBackButtonHidden(true)
-                            } label: {
-                                Text("Simpan")
                             }
+                        label: {
+                            Text("Simpan")
+                        }
                             
-                            .frame(maxWidth: .infinity, maxHeight: 58)
-                            .background(CustomColor.boxColor)
-                            .foregroundColor(Color.white)
-                            .font(.headline)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 32)
+                        .frame(maxWidth: .infinity, maxHeight: 58)
+                        .background(CustomColor.boxColor)
+                        .foregroundColor(Color.white)
+                        .font(.headline)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 32)
+                        .disabled(budgetInput.isEmpty || tarifInput.isEmpty)
+                            
                         }
                     }
-                    
                 }
             }.background(
                 CustomColor.boxColor

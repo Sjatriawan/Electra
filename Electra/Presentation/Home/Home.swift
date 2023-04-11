@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Home: View {
+    @State var addItem: Bool = false
+    
     var body: some View {
         NavigationStack {
             TabView{
@@ -20,6 +22,7 @@ struct Home: View {
                             Spacer()
                             NavigationLink {
                                 BudgetingPlan()
+                                    .navigationBarBackButtonHidden(true)
                             } label: {
                                 Image(systemName: "square.and.pencil")
                                     .font(.system(size: 22, weight: .regular, design: .default))
@@ -34,36 +37,44 @@ struct Home: View {
                                         .foregroundColor(Color("IconTabBar"))
                                     HStack (alignment: .bottom){
                                         Text("Rp")
-                                            .font(.system(size: 12, weight: .bold, design: .default))
+                                            .font(.system(size: 13, weight: .bold, design: .default))
                                             .foregroundColor(.white)
                                         Text("90,000")
                                             .font(.system(size: 22, weight: .bold, design: .default))
                                             .foregroundColor(.white)
                                     }
-                                    HStack{
+                                    HStack(spacing: 3){
                                         Text("Sisa budget")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(Color("IconTabBar"))
+                                        Text("Rp.")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(.white)
                                         Text("110,000")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
                                     }
-                                    HStack{
+                                    HStack(spacing: 3){
                                         Text("Sisa daya listrik")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(Color("IconTabBar"))
-                                        Text("73.3kWh")
+                                        Text("73.3")
+                                            .font(.system(size: 12, weight: .medium, design: .default))
+                                            .foregroundColor(.white)
+                                        Text("kWh")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
                                     }
+                                    
                                 }
                             }
+                            
                             Spacer()
                             ProgressBar()
                         }
                         .frame(width: 328, height: 129)
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 16.5)
                     .padding(.vertical, 64)
                     .background(LinearGradient(gradient: Gradient(colors: [Color("ShadowBox1"), Color("ShadowBox2")]), startPoint: .top, endPoint: .center))
                     .cornerRadius(32)
@@ -75,8 +86,8 @@ struct Home: View {
                             .font(.headline)
                             .foregroundColor(Color("TextColor"))
                         Spacer()
-                        NavigationLink {
-                            Kalkulasi()
+                        Button {
+                            addItem.toggle()
                         } label: {
                             Text("Tambah")
                                 .font(.headline)
@@ -85,11 +96,16 @@ struct Home: View {
                                 .background(Color("tambahButtonColor"))
                                 .cornerRadius(12)
                         }
+                        .sheet(isPresented: $addItem){
+                            Kalkulasi(addItem: $addItem)
+                                .presentationDetents([.medium, .large])
+                                
+                        }
                     }
                     .padding(.horizontal, 32)
                     List{
                         NavigationLink{
-                            DetailScreen().navigationBarBackButtonHidden(true)
+                            DetailScreen()
                         } label: {
                             ListContent()
                         }
@@ -119,9 +135,10 @@ struct Home: View {
                 UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
             }
             .accentColor(Color("Box"))
+            .navigationTitle("")
+            }
         }
     }
-}
 
 struct ProgressBar: View {
     var body: some View{
