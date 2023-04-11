@@ -27,7 +27,7 @@ struct OnBoardingScreen: View {
                         
                     }
                 }
-                .tabViewStyle(PageTabViewStyle())
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 //                .position(x: 0, y: 100)
 //                .background(Color.orange)
                 
