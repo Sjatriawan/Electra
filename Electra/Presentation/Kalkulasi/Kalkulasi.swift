@@ -8,21 +8,11 @@
 import SwiftUI
 
 struct Kalkulasi: View {
+    @Binding var addItem: Bool
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
-                //            NavigationView{
-                //                Text("")
-                //            }
-                //            .navigationTitle("Kalkulasi")
-                //            .navigationBarTitleDisplayMode(.inline)
-                //            .toolbar{
-                //                ToolbarItem(placement: .confirmationAction){
-                //                    Button("Simpan"){
-                //                        print("saved")
-                //                    }
-                //                }
-                //            }
                 Spacer()
                     .frame(height: 20)
                 Grid(alignment: .leading,
@@ -56,10 +46,18 @@ struct Kalkulasi: View {
                             }
                     }
                     GridRow{
-                        Text("Beban Alat")
-                            .font(.system(size: 15, weight: .medium))
+                        HStack {
+                            Text("Beban Alat")
+                                .font(.system(size: 15, weight: .medium))
                             .foregroundColor(Color("TextColor"))
-                        TextField("Beban (Watt/V/A)", text: .constant(""))
+                            Image(systemName: "questionmark.circle")
+                                .font(.system(size: 12))
+                                .foregroundColor(Color("Box"))
+                                .contextMenu{
+                                        Text("Daya listrik yang digunakan agar alat elektronik menyala")
+                                }
+                        }
+                        TextField("Watt/Kilowatt/Ampere", text: .constant(""))
                             .font(.system(size: 15))
                             .overlay{
                                 Divider()
@@ -114,6 +112,6 @@ struct Kalkulasi: View {
 
 struct Kalkulasi_Previews: PreviewProvider {
     static var previews: some View {
-        Kalkulasi()
+        Kalkulasi(addItem: .constant(false))
     }
 }

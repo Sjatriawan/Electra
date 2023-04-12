@@ -12,46 +12,54 @@ let customFont = "SF-Pro-Text-Bold-Italic"
 struct OnBoardingScreen: View {
     @State var index = 0
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 TabView(selection: $index){
                     ForEach(0 ..< 3) { i in
                         Image("image_\(i)")
                             .resizable()
-                            .frame(width: 250, height: 250)
-                            .padding()
-                            .aspectRatio( contentMode: .fit)
-
+                            .frame(width: 260, height: 285)
+                            .scaledToFill()
+//                            .padding(20)
+                            .offset(x: 0, y: 50)
+//                            .aspectRatio( contentMode: .fit)
+//                            .background(Color.blue)
+                        
                     }
                 }
-                .tabViewStyle(PageTabViewStyle())
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+//                .position(x: 0, y: 100)
+//                .background(Color.orange)
                 
-    
-//                HStack(spacing: 4){
-//                    ForEach(0 ..< 3) { i in
-//                        Color(.black)
-//                            .opacity(i == index ? 1 : 0.5)
-//                            .frame(width: i == index ? 8 : 16, height: 8)
-//                            .clipShape(RoundedRectangle(cornerRadius:20))
-//                    }
-//                }
-                VStack{
-                    Text("Electricity")
-                        .fontWeight(.bold)
-                        .padding()
+                VStack(spacing: 35){
+                    Text("Khawatir dengan tagihan listrikmu?")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(Color("titleOnboarding"))
+//                        .padding(25)
                     
-                    Text("Kamu bisa hitung estimasi biaya listrik bulanan agar sesuai dengan anggaran biaya bulananmu")
-                        .foregroundColor(Color.gray)
+                    Text("Jangan panik! Ayo kita hitung tagihan listrik bulananmu")
+                        .foregroundColor(Color("captionOnboarding"))
                         .multilineTextAlignment(.center)
                     
-                }.padding()
+                }
+                .padding()
+//                .background(Color.orange)
                 
-               
                 
-                NavigationLink(destination: SettingUp()) {
+                HStack(spacing: 8){
+                    ForEach(0 ..< 3) { i in
+                        Color("Box")
+                            .opacity(i == index ? 1 : 0.5)
+                            .frame(width: i == index ? 20 : 8, height: 8)
+                            .clipShape(RoundedRectangle(cornerRadius:20))
+                    }
+                }
+                .padding(30)
+                
+                NavigationLink(destination: BudgetingPlan()) {
                     Text("Mulai")
                         .frame(maxWidth: .infinity, maxHeight: 50)
-                        .background(Color.blue)
+                        .background(Color("Box"))
                         .foregroundColor(Color.white)
                         .fontWeight(.bold)
                         .cornerRadius(8)
