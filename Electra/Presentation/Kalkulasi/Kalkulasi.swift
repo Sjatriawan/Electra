@@ -46,10 +46,18 @@ struct Kalkulasi: View {
                             }
                     }
                     GridRow{
-                        Text("Beban Alat")
-                            .font(.system(size: 15, weight: .medium))
+                        HStack {
+                            Text("Beban Alat")
+                                .font(.system(size: 15, weight: .medium))
                             .foregroundColor(Color("TextColor"))
-                        TextField("Beban (Watt/V/A)", text: .constant(""))
+                            Image(systemName: "questionmark.circle")
+                                .font(.system(size: 12))
+                                .foregroundColor(Color("Box"))
+                                .contextMenu{
+                                        Text("Daya listrik yang digunakan agar alat elektronik menyala")
+                                }
+                        }
+                        TextField("Watt/Kilowatt/Ampere", text: .constant(""))
                             .font(.system(size: 15))
                             .overlay{
                                 Divider()
