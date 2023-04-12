@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailScreen: View {
     @State private var showingAlert = false
+    @State private var isEdit = false
     let nama: String = "Kulkas Mini"
     let jumlah: Int = 1
     let watt: Double = 80
@@ -24,165 +25,146 @@ struct DetailScreen: View {
     let biayaPerBulan: Double = 86400
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 50) {
-                VStack(spacing: 10){
-                    Text(nama)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.title)
-                        .fontWeight(.semibold)
-                    VStack(spacing: 3){
-                        HStack{
-                            Text("Jumlah")
-                            Spacer()
-                            Text("\(jumlah)")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("Watt")
-                            Spacer()
-                            Text(customFormat(watt)+" W")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("    Ampere")
-                            Spacer()
-                            Text(ampere == 0 ? "-": "\(customFormat(ampere)) A")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("    Volt")
-                            Spacer()
-                            Text(volt == 0 ? "-": "\(customFormat(volt)) V")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("Waktu")
-                            Spacer()
-                            Text("\(waktu) jam/hari")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("Hari")
-                            Spacer()
-                            Text("\(hari) hari")
-                                .fontWeight(.medium)
-                        }
-                    }
-                    Rectangle()
-                        .frame(height: 0.5, alignment: .bottom)
-                    
-                    VStack(spacing: 3){
-                        HStack{
-                            Text("Wh/hari")
-                            Spacer()
-                            Text("\(customFormat(whPerHari)) Wh")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("kWh/hari")
-                            Spacer()
-                            Text("\(customFormat(kwhPerHari)) kWh")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("Biaya/hari")
-                                .fontWeight(.regular)
-                            Spacer()
-                            Text("Rp \(customFormat(biayaPerHari))")
-                                .fontWeight(.medium)
-                        }
-                    }
-                    
-                    Rectangle()
-                        .frame(height: 0.5, alignment: .bottom)
-                    
-                    VStack(spacing: 3){
-                        HStack{
-                            Text("Wh/bulan")
-                            Spacer()
-                            Text("\(customFormat(whPerBulan)) Wh")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("kWh/bulan")
-                            Spacer()
-                            Text("\(customFormat(kwhPerBulan)) kWh")
-                                .fontWeight(.medium)
-                        }
-                        HStack{
-                            Text("Biaya/bulan")
-                                .fontWeight(.regular)
-                            Spacer()
-                            Text("Rp \(customFormat(biayaPerBulan))")
-                                .fontWeight(.medium)
-                        }
-                    }
-                }
-                .frame(maxWidth: .greatestFiniteMagnitude)
-                .padding(EdgeInsets(.init(top: 28.0, leading: 32.0, bottom: 38.0, trailing: 32.0)))
-                .background(LinearGradient(gradient: Gradient(colors: [Color("background1"), Color("background2")]), startPoint: .top, endPoint: .center))
-                .cornerRadius(24.0)
-                .foregroundColor(.white)
-                .fontWeight(.light)
-                .shadow(color: Color("shadow"), radius: 28)
-                
-                Button{
-                    print("Button berhasil di klik")
-                    showingAlert = true
-                } label: {
+        VStack(spacing: 50) {
+            VStack(spacing: 10){
+                Text(nama)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.title)
+                    .fontWeight(.semibold)
+                VStack(spacing: 3){
                     HStack{
-                        Image(systemName: "trash")
-                        Text("Hapus")
-                    }.frame(maxWidth: .infinity)
-                }
-                .frame(maxWidth: .infinity)
-                .fontWeight(.semibold)
-                .padding()
-                .foregroundColor(Color("button1"))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color("button1"), lineWidth: 1)
-                )
-                
-                Spacer()
-            }
-            .padding()
-            .alert(isPresented: $showingAlert){
-                Alert(
-                    title: Text("Menghapus Data"),
-                    message: Text("Kamu yakin ingin menghapus informasi alat ini?"),
-                    primaryButton: .destructive(Text("Hapus")){
-                        print("Menghapus....")
-                        // Fungsi untuk menghapus
-                        showingAlert = false
-                    },
-                    secondaryButton: .default(Text("Batalkan")){
-                        showingAlert = false
+                        Text("Jumlah")
+                        Spacer()
+                        Text("\(jumlah)")
+                            .fontWeight(.medium)
                     }
-                )
+                    HStack{
+                        Text("Watt")
+                        Spacer()
+                        Text(customFormat(watt)+" W")
+                            .fontWeight(.medium)
+                    }
+                    HStack{
+                        Text("Waktu")
+                        Spacer()
+                        Text("\(waktu) jam/hari")
+                            .fontWeight(.medium)
+                    }
+                    HStack{
+                        Text("Hari")
+                        Spacer()
+                        Text("\(hari) hari")
+                            .fontWeight(.medium)
+                    }
+                }
+                Rectangle()
+                    .frame(height: 0.5, alignment: .bottom)
+                
+                VStack(spacing: 3){
+                    HStack{
+                        Text("Wh/hari")
+                        Spacer()
+                        Text("\(customFormat(whPerHari)) Wh")
+                            .fontWeight(.medium)
+                    }
+                    HStack{
+                        Text("kWh/hari")
+                        Spacer()
+                        Text("\(customFormat(kwhPerHari)) kWh")
+                            .fontWeight(.medium)
+                    }
+                    HStack{
+                        Text("Biaya/hari")
+                            .fontWeight(.regular)
+                        Spacer()
+                        Text("Rp \(customFormat(biayaPerHari))")
+                            .fontWeight(.medium)
+                    }
+                }
+                
+                Rectangle()
+                    .frame(height: 0.5, alignment: .bottom)
+                
+                VStack(spacing: 3){
+                    HStack{
+                        Text("Wh/bulan")
+                        Spacer()
+                        Text("\(customFormat(whPerBulan)) Wh")
+                            .fontWeight(.medium)
+                    }
+                    HStack{
+                        Text("kWh/bulan")
+                        Spacer()
+                        Text("\(customFormat(kwhPerBulan)) kWh")
+                            .fontWeight(.medium)
+                    }
+                    HStack{
+                        Text("Biaya/bulan")
+                            .fontWeight(.regular)
+                        Spacer()
+                        Text("Rp \(customFormat(biayaPerBulan))")
+                            .fontWeight(.medium)
+                    }
+                }
             }
-            .navigationTitle("Informasi Alat")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                leading:
-                    NavigationLink(destination: SettingUp(), label: {
-                        Image(systemName: "chevron.left")
-                    })
-//                    Button(action: {
-//                        // Handle back button action
-//                    }, label: {
-//                        Image(systemName: "chevron.left")
-//                        // Text("Kembali")
-//                    })
-                ,
-                trailing: Button(action: {
-                    // Handle edit button action
-                }, label: {
-                    // Text("Edit")
-                    Image(systemName: "square.and.pencil")
-                })
+            .frame(maxWidth: .greatestFiniteMagnitude)
+            .padding(EdgeInsets(.init(top: 28.0, leading: 32.0, bottom: 38.0, trailing: 32.0)))
+            .background(LinearGradient(gradient: Gradient(colors: [Color("background1"), Color("background2")]), startPoint: .top, endPoint: .center))
+            .cornerRadius(24.0)
+            .foregroundColor(.white)
+            .fontWeight(.light)
+            .shadow(color: Color("shadow"), radius: 28)
+            
+            Button{
+                print("Button berhasil di klik")
+                showingAlert = true
+            } label: {
+                HStack{
+                    Image(systemName: "trash")
+                    Text("Hapus")
+                }.frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity)
+            .fontWeight(.semibold)
+            .padding()
+            .foregroundColor(Color("button1"))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color("button1"), lineWidth: 1)
             )
+            
+            Spacer()
+        }
+        .padding()
+        .alert(isPresented: $showingAlert){
+            Alert(
+                title: Text("Menghapus Data"),
+                message: Text("Kamu yakin ingin menghapus informasi alat ini?"),
+                primaryButton: .destructive(Text("Hapus")){
+                    print("Menghapus....")
+                    // Fungsi untuk menghapus
+                    showingAlert = false
+                },
+                secondaryButton: .default(Text("Batalkan")){
+                    showingAlert = false
+                }
+            )
+        }
+        .navigationTitle("Informasi Alat")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(
+            trailing:
+                Button(action: {
+                    isEdit.toggle()
+                }, label: {
+                     Text("Edit")
+//                    Image(systemName: "square.and.pencil")
+                })
+        )
+        .sheet(isPresented: $isEdit){
+            EditScreen(addItem: $isEdit)
+                .presentationDetents([.medium, .large])
+                
         }
     }
 }
