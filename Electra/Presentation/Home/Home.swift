@@ -10,6 +10,8 @@ import SwiftUI
 struct Home: View {
     @State var addItem: Bool = false
     @ObservedObject var budgetHomeViewmodel: BudgetingViewModel
+    @ObservedObject var toolViewmodell: ToolViewModel
+    
     var body: some View {
         NavigationStack {
             TabView{
@@ -39,7 +41,7 @@ struct Home: View {
                                         Text("Rp")
                                             .font(.system(size: 13, weight: .bold, design: .default))
                                             .foregroundColor(.white)
-                                        Text("90.000")
+                                        Text("\(toolViewmodell.calculateTotalUsageCost())")
                                             .font(.system(size: 22, weight: .bold, design: .default))
                                             .foregroundColor(.white)
                                     }
@@ -50,7 +52,7 @@ struct Home: View {
                                         Text("Rp.")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
-                                        Text("110,000")
+                                        Text("\(budgetHomeViewmodel.budgetingList[0].biaya - toolViewmodell.calculateTotalUsageCost())")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
                                     }
@@ -97,49 +99,68 @@ struct Home: View {
                                 .cornerRadius(12)
                         }
                         .sheet(isPresented: $addItem){
-                            Kalkulasi(addItem: $addItem, viewmodel: budgetHomeViewmodel)
-                            
+                            Kalkulasi(viewmodel: budgetHomeViewmodel, toolViewModel: toolViewmodell, addItem: $addItem)
                                 .presentationDetents([.medium, .large])
-                                
+                            
                         }
                     }
                     .padding(.horizontal, 32)
                     List{
-                        NavigationLink{
-                            DetailScreen()
-                        } label: {
-                            ListContent()
-                        }
-                        .listRowSeparator(.hidden)
-                    }
-                    .listStyle(.plain)
-                    .padding(16)
-                }
-                .edgesIgnoringSafeArea(.top)
-                .tabItem{
-                    Image(systemName: "house")
-                    Text("Home")
-                        .onAppear(){
-                            UITableView.appearance().separatorStyle = .none
+                        ForEach(toolViewmodell.tools, id: \.self){ tool in
+                            NavigationLink{
+                                DetailScreen()
+                            } label: {
+                                HStack(spacing: 16){
+                                    Text("\(tool.quantity)x")
+                                        .font(.system(size: 12, weight: .medium, design: .default))
+                                        .foregroundColor(Color("TextColor"))
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(tool.name)
+                                            .font(.system(size: 15, weight: .medium, design: .default))
+                                            .foregroundColor(Color("TextColor"))
+                                        Text("\(tool.usageTimePerHour) jam/hari")
+                                            .font(.caption)
+                                            .italic()
+                                            .foregroundColor(Color("TextColor"))
+                                    }
+                                    Spacer()
+                                    Text("Rp. \(toolViewmodell.calculateUsagePerday(tool: tool))")
+                                        .font(.system(size: 15, weight: .medium, design: .default))
+                                        .foregroundColor(Color("TextColor"))
+                                }
+                                .listRowSeparator(.hidden)
+                            }
+                            
                         }
                         .listStyle(.plain)
                         .padding(16)
-                }
-                Text("Info")
-                    .tabItem{
-                        Image(systemName: "questionmark.circle")
-                        Text("Info")
                     }
-            }
-            .onAppear(){
-                UITabBar.appearance().isTranslucent = false
-                UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
-            }
-            .accentColor(Color("Box"))
-            .navigationTitle("")
+                    .edgesIgnoringSafeArea(.top)
+                    .tabItem{
+                        Image(systemName: "house")
+                        Text("Home")
+                            .onAppear(){
+                                UITableView.appearance().separatorStyle = .none
+                            }
+                            .listStyle(.plain)
+                            .padding(16)
+                    }
+                    Text("Info")
+                        .tabItem{
+                            Image(systemName: "questionmark.circle")
+                            Text("Info")
+                        }
+                }
+                .onAppear(){
+                    UITabBar.appearance().isTranslucent = false
+                    UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
+                }
+                .accentColor(Color("Box"))
+                .navigationTitle("")
             }
         }
     }
+}
 
 struct ProgressBar: View {
     var body: some View{
@@ -165,28 +186,16 @@ struct ProgressBar: View {
     }
 }
 
-struct ListContent: View{
-    var body: some View{
-        HStack(spacing: 16){
-            Text("1x")
-                .font(.system(size: 12, weight: .medium, design: .default))
-                .foregroundColor(Color("TextColor"))
-            VStack(alignment: .leading, spacing: 4){
-                Text("Kulkas Mini")
-                    .font(.system(size: 15, weight: .medium, design: .default))
-                    .foregroundColor(Color("TextColor"))
-                Text("24 jam/hari")
-                    .font(.caption)
-                    .italic()
-                    .foregroundColor(Color("TextColor"))
-            }
-            Spacer()
-            Text("Rp86,400")
-                .font(.system(size: 15, weight: .semibold, design: .default))
-                .foregroundColor(Color("TextColor"))
-        }
-    }
-}
+//struct ListContent: View{
+//    @ObservedObject var toolViewmodell: ToolViewModel
+//    var body: some View{
+//        HStack(spacing: 16){
+//            Text("")
+//                .font(.system(size: 12, weight: .medium, design: .default))
+//                .foregroundColor(Color("TextColor"))
+//        }
+//    }
+//}
 
 //struct Home_Previews: PreviewProvider {
 //    static var previews: some View {
