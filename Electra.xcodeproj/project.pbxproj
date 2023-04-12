@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		006702E329E02D32000C461E /* Kalkulasi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006702E229E02D32000C461E /* Kalkulasi.swift */; };
 		0067030129E3D96B000C461E /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0067030029E3D96B000C461E /* Homepage.swift */; };
+		0067464F29E505FC006FDB7E /* shania.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0067464E29E505FC006FDB7E /* shania.swift */; };
 		0514D8F029DE6072002C525B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514D8EF29DE6072002C525B /* Home.swift */; };
 		09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */; };
 		09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		006702E229E02D32000C461E /* Kalkulasi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kalkulasi.swift; sourceTree = "<group>"; };
 		0067030029E3D96B000C461E /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
+		0067464E29E505FC006FDB7E /* shania.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shania.swift; sourceTree = "<group>"; };
 		0514D8EF29DE6072002C525B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		09E9CAA829DD1FBF000B8FE9 /* Electra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Electra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraApp.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				46FB82B429DD889A00EF4571 /* Detail */,
 				05E90D7329DE610D00A1D1F9 /* Home */,
 				09E9CAD629DD202E000B8FE9 /* Getting Started */,
+				0067464E29E505FC006FDB7E /* shania.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				0514D8F029DE6072002C525B /* Home.swift in Sources */,
 				09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */,
 				09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */,
+				0067464F29E505FC006FDB7E /* shania.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
