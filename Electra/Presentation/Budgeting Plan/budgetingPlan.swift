@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct BudgetingPlan: View {
-    @State private var budgetInput: String = ""
-    @State private var tarifInput: String = ""
-    @StateObject var viewModel = BudgetingViewModel()
+    @StateObject var budgetingViewModel = BudgetingViewModel()
+    @StateObject var toolViewModell = ToolViewModel()
     @State private var tarif: String = ""
     @State private var biaya: String = ""
     @State private var navigateToHome = false
@@ -71,7 +70,7 @@ struct BudgetingPlan: View {
                         
                         VStack{
                             Button(action: {
-                                viewModel.addBudgeting(tarif: Double(tarif) ?? 0, biaya: Double(biaya) ?? 0)
+                                budgetingViewModel.addBudgeting(tarif: Double(tarif) ?? 0, biaya: Double(biaya) ?? 0)
                                 tarif = ""
                                 biaya = ""
                                 navigateToHome = true
@@ -84,7 +83,11 @@ struct BudgetingPlan: View {
                                     .cornerRadius(8)
                                     .padding(.horizontal, 32)
                                 
-                            }).background(NavigationLink(destination: Home(budgetHomeViewmodel: viewModel), isActive: $navigateToHome) {
+                            }).background(
+                                NavigationLink(
+                                    destination:
+                                        Home(
+                                            budgetHomeViewmodel: budgetingViewModel, toolViewmodell: toolViewModell), isActive: $navigateToHome) {
                                 EmptyView()
                             })
                             
