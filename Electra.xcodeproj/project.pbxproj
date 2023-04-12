@@ -19,6 +19,8 @@
 		09E9CAC929DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAC829DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift */; };
 		09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAD729DD204B000B8FE9 /* OnBoardingScreen.swift */; };
 		09E9CADA29DD217B000B8FE9 /* SettingUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAD929DD217B000B8FE9 /* SettingUp.swift */; };
+		09F0DE6129E5A2C700AB34E3 /* BudgetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F0DE6029E5A2C700AB34E3 /* BudgetingModel.swift */; };
+		09F0DE6329E5A2E800AB34E3 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F0DE6229E5A2E800AB34E3 /* BudgetViewModel.swift */; };
 		33C9308B29DE833700E29629 /* BudgetingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9308A29DE833700E29629 /* BudgetingPlan.swift */; };
 		4649348F29E64B0F00412F27 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649348E29E64B0F00412F27 /* EditScreen.swift */; };
 		46FB82B629DD88E300EF4571 /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB82B529DD88E300EF4571 /* DetailScreen.swift */; };
@@ -57,6 +59,8 @@
 		09E9CAC829DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		09E9CAD729DD204B000B8FE9 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
 		09E9CAD929DD217B000B8FE9 /* SettingUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUp.swift; sourceTree = "<group>"; };
+		09F0DE6029E5A2C700AB34E3 /* BudgetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingModel.swift; sourceTree = "<group>"; };
+		09F0DE6229E5A2E800AB34E3 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
 		33C9308A29DE833700E29629 /* BudgetingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingPlan.swift; sourceTree = "<group>"; };
 		4649348E29E64B0F00412F27 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		46FB82B529DD88E300EF4571 /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 		09E9CAAA29DD1FBF000B8FE9 /* Electra */ = {
 			isa = PBXGroup;
 			children = (
+				09F0DE5F29E5A11F00AB34E3 /* ViewModel */,
+				09F0DE5E29E5A11100AB34E3 /* Model */,
 				09E9CAD529DD1FD9000B8FE9 /* Presentation */,
 				09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */,
 				09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */,
@@ -180,6 +186,22 @@
 				09E9CAD929DD217B000B8FE9 /* SettingUp.swift */,
 			);
 			path = "Getting Started";
+			sourceTree = "<group>";
+		};
+		09F0DE5E29E5A11100AB34E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09F0DE6029E5A2C700AB34E3 /* BudgetingModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		09F0DE5F29E5A11F00AB34E3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				09F0DE6229E5A2E800AB34E3 /* BudgetViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		33C9308729DE81DA00E29629 /* Budgeting Plan */ = {
@@ -331,9 +353,11 @@
 			files = (
 				46FB82B629DD88E300EF4571 /* DetailScreen.swift in Sources */,
 				09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */,
+				09F0DE6129E5A2C700AB34E3 /* BudgetingModel.swift in Sources */,
 				006702E329E02D32000C461E /* Kalkulasi.swift in Sources */,
 				4649348F29E64B0F00412F27 /* EditScreen.swift in Sources */,
 				0067030129E3D96B000C461E /* Homepage.swift in Sources */,
+				09F0DE6329E5A2E800AB34E3 /* BudgetViewModel.swift in Sources */,
 				33C9308B29DE833700E29629 /* BudgetingPlan.swift in Sources */,
 				09E9CADA29DD217B000B8FE9 /* SettingUp.swift in Sources */,
 				0514D8F029DE6072002C525B /* Home.swift in Sources */,

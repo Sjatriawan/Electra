@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct BudgetingPlan: View {
-    @State private var budgetInput: String = ""
-    @State private var tarifInput: String = ""
+    @StateObject var viewModel = BudgetingViewModel()
+    @State private var tarif: String = ""
+    @State private var biaya: String = ""
+    @State private var navigateToHome = false
+
     
     var body: some View {
         NavigationStack{
@@ -19,9 +22,28 @@ struct BudgetingPlan: View {
                         .padding(.top, 10)
                         .font(.headline)
                         .foregroundColor(Color.white)
+                    
                 }
-                
                 VStack{
+//                    List {
+//                        ForEach(viewModel.budgetingList.indices, id: \.self) { index in
+//                            Button(action: {
+//                                tarif = String(viewModel.budgetingList[index].tarif)
+//                                biaya = String(viewModel.budgetingList[index].biaya)
+//
+//                            }, label: {
+//                                HStack {
+//                                    Text("Tarif: \(viewModel.budgetingList[index].tarif)")
+//                                    Text("Biaya: \(viewModel.budgetingList[index].biaya)")
+//                                }
+//                            })
+//                        }
+//                        .onDelete(perform: { indexSet in
+//                            viewModel.budgetingList.remove(atOffsets: indexSet)
+//                        })
+//                    }
+//                    .listStyle(.plain)
+//                    .navigationTitle("Budgeting List")
                     Spacer()
                     ZStack {
                         RadialGradient(gradient: Gradient(colors: [.white.opacity(0.3),CustomColor.boxColor]), center:.center, startRadius: 0, endRadius: 140)
@@ -38,7 +60,7 @@ struct BudgetingPlan: View {
                                     Text("Budget")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Target Tagihan Listrik/Bulan", text: $budgetInput)
+                                    TextField("Target Tagihan Listrik/Bulan", text: $biaya)
                                         .font(.system(size: 15, weight: .regular))
                                         .overlay{
                                             Divider()
@@ -53,7 +75,7 @@ struct BudgetingPlan: View {
                                     Text("Tarif")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Tarif Listrik/kWh", text: $tarifInput)
+                                    TextField("Tarif Listrik/kWh", text: $tarif)
                                         .font(.system(size: 15, weight: .regular))
                                         .overlay{
                                             Divider()
@@ -67,21 +89,23 @@ struct BudgetingPlan: View {
                         }
                         
                         VStack{
-                            NavigationLink {
-                                Home()
-                                    .navigationBarBackButtonHidden(true)
-                            }
-                        label: {
-                            Text("Simpan")
-                        }
-                            
-                        .frame(maxWidth: .infinity, maxHeight: 58)
-                        .background(CustomColor.boxColor)
-                        .foregroundColor(Color.white)
-                        .font(.headline)
-                        .cornerRadius(8)
-                        .padding(.horizontal, 32)
-                        .disabled(budgetInput.isEmpty || tarifInput.isEmpty)
+                            Button(action: {
+                                viewModel.addBudgeting(tarif: Double(tarif) ?? 0, biaya: Double(biaya) ?? 0)
+                                tarif = ""
+                                biaya = ""
+                                navigateToHome = true
+                            }, label: {
+                                Text("Save")
+                                    .frame(maxWidth: .infinity, maxHeight: 58)
+                                    .background(CustomColor.boxColor)
+                                    .foregroundColor(Color.white)
+                                    .font(.headline)
+                                    .cornerRadius(8)
+                                    .padding(.horizontal, 32)
+                                
+                            }).background(NavigationLink(destination: Home(budgetHomeViewmodel: viewModel), isActive: $navigateToHome) {
+                                EmptyView()
+                            })
                             
                         }
                     }

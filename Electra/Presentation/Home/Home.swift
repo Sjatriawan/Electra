@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Home: View {
     @State var addItem: Bool = false
-    
+    @ObservedObject var budgetHomeViewmodel: BudgetingViewModel
     var body: some View {
         NavigationStack {
             TabView{
@@ -39,7 +39,7 @@ struct Home: View {
                                         Text("Rp")
                                             .font(.system(size: 13, weight: .bold, design: .default))
                                             .foregroundColor(.white)
-                                        Text("90,000")
+                                        Text("90.000")
                                             .font(.system(size: 22, weight: .bold, design: .default))
                                             .foregroundColor(.white)
                                     }
@@ -97,7 +97,8 @@ struct Home: View {
                                 .cornerRadius(12)
                         }
                         .sheet(isPresented: $addItem){
-                            Kalkulasi(addItem: $addItem)
+                            Kalkulasi(addItem: $addItem, viewmodel: budgetHomeViewmodel)
+                            
                                 .presentationDetents([.medium, .large])
                                 
                         }
@@ -187,8 +188,8 @@ struct ListContent: View{
     }
 }
 
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        Home()
-    }
-}
+//struct Home_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Home( BudgetHomeViewmodel: BudgetingViewModel())
+//    }
+//}
