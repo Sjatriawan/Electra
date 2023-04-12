@@ -24,7 +24,6 @@ struct BudgetingPlan: View {
                         .foregroundColor(Color.white)
                     
                 }
-                
                 VStack{
 //                    List {
 //                        ForEach(viewModel.budgetingList.indices, id: \.self) { index in
@@ -104,7 +103,7 @@ struct BudgetingPlan: View {
                                     .cornerRadius(8)
                                     .padding(.horizontal, 32)
                                 
-                            }).background(NavigationLink(destination: Home(), isActive: $navigateToHome) {
+                            }).background(NavigationLink(destination: Home(budgetHomeViewmodel: viewModel), isActive: $navigateToHome) {
                                 EmptyView()
                             })
                             

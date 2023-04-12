@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Kalkulasi: View {
     @Binding var addItem: Bool
+    @ObservedObject var viewmodel: BudgetingViewModel
     
     var body: some View {
         NavigationStack {
@@ -112,6 +113,6 @@ struct Kalkulasi: View {
 
 struct Kalkulasi_Previews: PreviewProvider {
     static var previews: some View {
-        Kalkulasi(addItem: .constant(false))
+        Kalkulasi(addItem: .constant(false), viewmodel: BudgetingViewModel())
     }
 }
