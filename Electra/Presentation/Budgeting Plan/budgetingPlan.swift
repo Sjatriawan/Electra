@@ -46,6 +46,14 @@ struct BudgetingPlan: View {
                                         .font(.system(size: 15, weight: .regular))
                                         .keyboardType(.decimalPad)
                                         .overlay(VStack{Divider().offset(x: 0, y: 15)})
+=======
+                                        .overlay{
+                                            Divider()
+                                                .background(Color("textFieldLineSeparator"))
+                                                .offset(x: 0, y: 20)
+                                                .frame(width: 250)
+                                        }
+>>>>>>> master
                                 }
                                 .padding(.horizontal, 32)
                                 .padding(.vertical, 22)
