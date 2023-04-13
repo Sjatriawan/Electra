@@ -11,7 +11,11 @@ class BudgetingViewModel: ObservableObject {
     @Published var budgetingList: [BudgetingModel] = []
 
     func addBudgeting(tarif: Double, biaya: Double) {
-        let budgeting = BudgetingModel(tarif: tarif, biaya: biaya)
+        let budgeting = BudgetingModel(
+            tarif: tarif,
+            biaya: biaya,
+            kWh: biaya/tarif
+        )
         budgetingList.append(budgeting)
     }
 }

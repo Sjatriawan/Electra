@@ -9,4 +9,5 @@ import Foundation
 struct BudgetingModel: Codable {
     var tarif: Double
     var biaya: Double
+    var kWh: Double
 }

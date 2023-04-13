@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct BudgetingPlan: View {
+    @State private var budgetInput: String = ""
+    @State private var tarifInput: String = ""
     @StateObject var budgetingViewModel = BudgetingViewModel()
     @StateObject var toolViewModell = ToolViewModel()
     @State private var tarif: String = ""
     @State private var biaya: String = ""
-    @State private var navigateToHome = false
-
     
     var body: some View {
         NavigationStack{
@@ -34,7 +34,7 @@ struct BudgetingPlan: View {
                                     Text("Budget")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Target Tagihan Listrik/Bulan", text: $biaya)
+                                    TextField("Target Tagihan Listrik/Bulan", text: $budgetInput)
                                         .font(.system(size: 15, weight: .regular))
                                         .keyboardType(.decimalPad)
                                         .overlay(
@@ -48,7 +48,7 @@ struct BudgetingPlan: View {
                                     Text("Tarif")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Tarif Listrik/kWh", text: $tarif)
+                                    TextField("Tarif Listrik/kWh", text: $tarifInput)
                                         .font(.system(size: 15, weight: .regular))
                                         .keyboardType(.decimalPad)
                                         .overlay(VStack{Divider().offset(x: 0, y: 15)})
@@ -59,38 +59,25 @@ struct BudgetingPlan: View {
                             }
                             
                             NavigationLink {
-                                Home()
+                                Home(budgetHomeViewmodel: budgetingViewModel, toolViewmodell: toolViewModell)
                                     .navigationBarBackButtonHidden(true)
+                            } label: {
+                                Text("Simpan")
+                                    .frame(maxWidth: .infinity, minHeight: 58)
                             }
-                            
-                        label: {
-                            Text("Simpan")
-                                .frame(maxWidth: .infinity, minHeight: 58)
-                        }
-                        
-                        VStack{
-                            Button(action: {
-                                budgetingViewModel.addBudgeting(tarif: Double(tarif) ?? 0, biaya: Double(biaya) ?? 0)
-                                tarif = ""
-                                biaya = ""
-                                navigateToHome = true
-                            }, label: {
-                                Text("Save")
-                                    .frame(maxWidth: .infinity, maxHeight: 58)
-                                    .background(CustomColor.boxColor)
-                                    .foregroundColor(Color.white)
-                                    .font(.headline)
-                                    .cornerRadius(8)
-                                    .padding(.horizontal, 32)
-                                
-                            }).background(
-                                NavigationLink(
-                                    destination:
-                                        Home(
-                                            budgetHomeViewmodel: budgetingViewModel, toolViewmodell: toolViewModell), isActive: $navigateToHome) {
-                                EmptyView()
-                            })
-                            
+                            .frame(maxWidth: .infinity, minHeight: 58)
+                            .background(( !budgetInput.isEmpty && !tarifInput.isEmpty) ? CustomColor.boxColor : CustomColor.disabledColor)
+                            .foregroundColor(Color.white)
+                            .font(.headline)
+                            .cornerRadius(8)
+                            .padding(.horizontal, 32)
+                            .padding(.vertical, 22)
+                            .disabled(budgetInput.isEmpty || tarifInput.isEmpty)
+                            .simultaneousGesture(TapGesture().onEnded({
+                                budgetingViewModel.addBudgeting(tarif: Double(tarifInput) ?? 0, biaya: Double(budgetInput) ?? 0)
+                                tarifInput = ""
+                                budgetInput = ""
+                            }))
                         }
                     }
                 }
@@ -121,4 +108,3 @@ struct BudgetingPlan_Previews: PreviewProvider {
         BudgetingPlan()
     }
 }
-

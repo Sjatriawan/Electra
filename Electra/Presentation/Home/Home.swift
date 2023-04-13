@@ -41,7 +41,7 @@ struct Home: View {
                                         Text("Rp")
                                             .font(.system(size: 13, weight: .bold, design: .default))
                                             .foregroundColor(.white)
-                                        Text("\(toolViewmodell.calculateTotalUsageCost())")
+                                        Text("\(toolViewmodell.customFormat(toolViewmodell.calculateTotalUsageCost()))")
                                             .font(.system(size: 22, weight: .bold, design: .default))
                                             .foregroundColor(.white)
                                     }
@@ -52,7 +52,7 @@ struct Home: View {
                                         Text("Rp.")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
-                                        Text("\(budgetHomeViewmodel.budgetingList[0].biaya - toolViewmodell.calculateTotalUsageCost())")
+                                        Text("\(toolViewmodell.customFormat(budgetHomeViewmodel.budgetingList[0].biaya - toolViewmodell.calculateTotalUsageCost()))")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
                                     }
@@ -60,7 +60,7 @@ struct Home: View {
                                         Text("Sisa daya listrik")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(Color("IconTabBar"))
-                                        Text("73.3")
+                                        Text("\(toolViewmodell.customFormat(budgetHomeViewmodel.budgetingList[0].kWh - toolViewmodell.calculateTotalKwh()))") // masih blm dikurang total kwh
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
                                         Text("kWh")
@@ -72,7 +72,7 @@ struct Home: View {
                             }
                             
                             Spacer()
-                            ProgressBar()
+                            ProgressBar(budgetHomeViewmodel: budgetHomeViewmodel, toolViewmodell: toolViewmodell)
                         }
                         .frame(width: 328, height: 129)
                     }
@@ -101,15 +101,13 @@ struct Home: View {
                         .sheet(isPresented: $addItem){
                             Kalkulasi(viewmodel: budgetHomeViewmodel, toolViewModel: toolViewmodell, addItem: $addItem)
                                 .presentationDetents([.medium, .large])
-                            
+                                
                         }
                     }
                     .padding(.horizontal, 32)
                     List{
                         ForEach(toolViewmodell.tools, id: \.self){ tool in
-                            NavigationLink{
-                                DetailScreen()
-                            } label: {
+                            NavigationLink(destination: DetailScreen()) {
                                 HStack(spacing: 16){
                                     Text("\(tool.quantity)x")
                                         .font(.system(size: 12, weight: .medium, design: .default))
@@ -124,45 +122,47 @@ struct Home: View {
                                             .foregroundColor(Color("TextColor"))
                                     }
                                     Spacer()
-                                    Text("Rp. \(toolViewmodell.calculateUsagePerday(tool: tool))")
+                                    Text("Rp. \(toolViewmodell.customFormat(toolViewmodell.calculateUsageCost(tool: tool)))")
                                         .font(.system(size: 15, weight: .medium, design: .default))
                                         .foregroundColor(Color("TextColor"))
                                 }
-                                .listRowSeparator(.hidden)
                             }
-                            
+                            .listRowSeparator(.hidden)
+                        }
+                    }
+                    .listStyle(.plain)
+                    .padding(16)
+                }
+                .edgesIgnoringSafeArea(.top)
+                .tabItem{
+                    Image(systemName: "house")
+                    Text("Home")
+                        .onAppear(){
+                            UITableView.appearance().separatorStyle = .none
                         }
                         .listStyle(.plain)
                         .padding(16)
-                    }
-                    .edgesIgnoringSafeArea(.top)
+                }
+                Text("Info")
                     .tabItem{
-                        Image(systemName: "house")
-                        Text("Home")
-                            .onAppear(){
-                                UITableView.appearance().separatorStyle = .none
-                            }
-                            .listStyle(.plain)
-                            .padding(16)
+                        Image(systemName: "questionmark.circle")
+                        Text("Info")
                     }
-                    Text("Info")
-                        .tabItem{
-                            Image(systemName: "questionmark.circle")
-                            Text("Info")
-                        }
-                }
-                .onAppear(){
-                    UITabBar.appearance().isTranslucent = false
-                    UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
-                }
-                .accentColor(Color("Box"))
-                .navigationTitle("")
+            }
+            .onAppear(){
+                UITabBar.appearance().isTranslucent = false
+                UITabBar.appearance().unselectedItemTintColor = UIColor(Color("IconTabBar"))
+            }
+            .accentColor(Color("Box"))
+            .navigationTitle("")
             }
         }
     }
-}
 
 struct ProgressBar: View {
+    @ObservedObject var budgetHomeViewmodel: BudgetingViewModel
+    @ObservedObject var toolViewmodell: ToolViewModel
+    
     var body: some View{
         ZStack{
             Circle()
@@ -170,35 +170,37 @@ struct ProgressBar: View {
                     Color.white.opacity(0.55),
                     lineWidth: 14)
             Circle()
-                .trim(from: 0, to: 0.45)
+                .trim(from: 0, to: degreeFunc())
                 .stroke(
                     Color("tambahButtonColor"), style: StrokeStyle(lineWidth: 16, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
             VStack{
-                Text("45%")
+                Text("\(persentase())%")
                     .font(.system(size: 22, weight: .semibold, design: .default))
                     .foregroundColor(.white)
-                Text("60/133.3kWh")
+                Text("\(toolViewmodell.customFormat(toolViewmodell.calculateTotalKwh()))/\(toolViewmodell.customFormat(budgetHomeViewmodel.budgetingList[0].kWh))kWh")
                     .font(.system(size: 11, weight: .regular, design: .default))
                     .foregroundColor(.white)
             }
         }
     }
+    
+    func persentase() -> Double {
+        var persen = toolViewmodell.calculateTotalKwh()/budgetHomeViewmodel.budgetingList[0].kWh * 100
+        return persen
+    }
+    
+    func degreeFunc() -> Double {
+        var degree = toolViewmodell.calculateTotalKwh()/budgetHomeViewmodel.budgetingList[0].kWh
+        var degree2 = round(degree * 100) / 100.0
+        
+        return degree2
+    }
 }
 
-//struct ListContent: View{
-//    @ObservedObject var toolViewmodell: ToolViewModel
-//    var body: some View{
-//        HStack(spacing: 16){
-//            Text("")
-//                .font(.system(size: 12, weight: .medium, design: .default))
-//                .foregroundColor(Color("TextColor"))
-//        }
-//    }
-//}
 
 //struct Home_Previews: PreviewProvider {
 //    static var previews: some View {
-//        Home( BudgetHomeViewmodel: BudgetingViewModel())
+//        Home()
 //    }
 //}

@@ -40,23 +40,34 @@ class ToolViewModel: ObservableObject {
 //        let cost = usageInKwh * Double(electricityTariff)
 //        return cost
 //    }
-    
-    func calculateUsageCost(tool: Tool) -> Double {
-        let Wh = Double(tool.power) * Double(tool.quantity) * Double(tool.usageTimePerHour)
-        let kWh = Wh/1000
-        let budgetDay = kWh * Double(electricityTariff)
-        
-        
-        return budgetDay
-    }
-    
+    // Calculate budget per day
     func calculateUsagePerday(tool:Tool) -> Double {
         let Wh = Double(tool.power) * Double(tool.quantity) * Double(tool.usageTimePerHour)
         let kWh = Wh/1000
         let budgetDay = kWh * Double(electricityTariff)
         
-        
         return budgetDay
+    }
+    // Calculate budget per month
+    func calculateUsageCost(tool: Tool) -> Double {
+        let budgetDay = calculateUsagePerday(tool: tool)
+        let budgetMonth = budgetDay * Double(tool.repeatDays * 4)
+        
+        return budgetMonth
+    }
+    
+    func calculateKwhPerDay(tool: Tool) -> Double {
+        let Wh = Double(tool.power) * Double(tool.quantity) * Double(tool.usageTimePerHour)
+        let kWh = Wh/1000
+        
+        return kWh
+    }
+    
+    func calculateKwhPerMonth(tool:Tool) -> Double {
+        let kWhPerDay = calculateKwhPerDay(tool: tool)
+        let kWhPerMonth = kWhPerDay * Double(tool.repeatDays * 4)
+        
+        return kWhPerMonth
     }
 /*
     let Wh = Double(tool.power) * Double(tool.quantity) * Double(tool.usageTimePerHour)
@@ -87,5 +98,30 @@ class ToolViewModel: ObservableObject {
             totalCost += cost
         }
         return totalCost
+    }
+    
+    func calculateTotalKwh() -> Double {
+        var totalKwh = 0.0
+        for tool in tools {
+            let kWh = calculateKwhPerMonth(tool: tool)
+            totalKwh += kWh
+        }
+        return totalKwh
+    }
+    
+    func customFormat(_ number: Double) -> String  {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        let decimalValue = number.truncatingRemainder(dividingBy: 1)
+        
+        if (decimalValue == 0){
+            formatter.minimumFractionDigits = 0
+        } else {
+            formatter.minimumFractionDigits = 2
+        }
+        
+        let formattedString = formatter.string(from: NSNumber(value: number))!
+        return formattedString
     }
 }
