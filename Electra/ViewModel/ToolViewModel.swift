@@ -12,11 +12,14 @@ class ToolViewModel: ObservableObject {
 
     let budgetPlan = 300000 //Rencana biaya listrik
     let electricityTariff = 1262 // Tarif listrik per KWh
+    
+    var indexing: Int = 0
 
     func addTool(name: String, quantity: Int, power: Int, usageTimePerHour: Int, repeatDays: Int) {
-        let newTool = Tool(name: name, quantity: quantity, power: power, usageTimePerHour: usageTimePerHour, repeatDays: repeatDays)
+        let newTool = Tool(index: indexing, name: name, quantity: quantity, power: power, usageTimePerHour: usageTimePerHour, repeatDays: repeatDays)
         tools.append(newTool)
         saveTools()
+        indexing += 1
     }
 
     func saveTools() {

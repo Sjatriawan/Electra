@@ -101,13 +101,13 @@ struct Home: View {
                         .sheet(isPresented: $addItem){
                             Kalkulasi(viewmodel: budgetHomeViewmodel, toolViewModel: toolViewmodell, addItem: $addItem)
                                 .presentationDetents([.medium, .large])
-                                
+                            
                         }
                     }
                     .padding(.horizontal, 32)
                     List{
                         ForEach(toolViewmodell.tools, id: \.self){ tool in
-                            NavigationLink(destination: DetailScreen()) {
+                            NavigationLink(destination: DetailScreen(budgetViewmodel: budgetHomeViewmodel, toolViewmodell: toolViewmodell, index: tool.index)) {
                                 HStack(spacing: 16){
                                     Text("\(tool.quantity)x")
                                         .font(.system(size: 12, weight: .medium, design: .default))
@@ -155,9 +155,9 @@ struct Home: View {
             }
             .accentColor(Color("Box"))
             .navigationTitle("")
-            }
         }
     }
+}
 
 struct ProgressBar: View {
     @ObservedObject var budgetHomeViewmodel: BudgetingViewModel
@@ -175,7 +175,7 @@ struct ProgressBar: View {
                     Color("tambahButtonColor"), style: StrokeStyle(lineWidth: 16, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
             VStack{
-                Text("\(persentase())%")
+                Text("\(toolViewmodell.customFormat(persentase()))%")
                     .font(.system(size: 22, weight: .semibold, design: .default))
                     .foregroundColor(.white)
                 Text("\(toolViewmodell.customFormat(toolViewmodell.calculateTotalKwh()))/\(toolViewmodell.customFormat(budgetHomeViewmodel.budgetingList[0].kWh))kWh")
@@ -186,13 +186,13 @@ struct ProgressBar: View {
     }
     
     func persentase() -> Double {
-        var persen = toolViewmodell.calculateTotalKwh()/budgetHomeViewmodel.budgetingList[0].kWh * 100
+        let persen = toolViewmodell.calculateTotalKwh()/budgetHomeViewmodel.budgetingList[0].kWh * 100
         return persen
     }
     
     func degreeFunc() -> Double {
-        var degree = toolViewmodell.calculateTotalKwh()/budgetHomeViewmodel.budgetingList[0].kWh
-        var degree2 = round(degree * 100) / 100.0
+        let degree = toolViewmodell.calculateTotalKwh()/budgetHomeViewmodel.budgetingList[0].kWh
+        let degree2 = round(degree * 100) / 100.0
         
         return degree2
     }

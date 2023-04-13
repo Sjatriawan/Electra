@@ -9,6 +9,7 @@ import Foundation
 
 
 struct Tool: Codable, Hashable {
+    var index: Int
     var name: String
     var quantity: Int
     var power: Int

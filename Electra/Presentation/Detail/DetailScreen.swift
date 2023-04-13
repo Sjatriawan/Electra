@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DetailScreen: View {
+    @ObservedObject var budgetViewmodel: BudgetingViewModel
+    @ObservedObject var toolViewmodell: ToolViewModel
+    @State var index: Int
     @State private var showingAlert = false
     @State private var isEdit = false
     let nama: String = "Kulkas Mini"
@@ -27,7 +30,7 @@ struct DetailScreen: View {
     var body: some View {
         VStack(spacing: 50) {
             VStack(spacing: 10){
-                Text(nama)
+                Text(toolViewmodell.tools[index].name)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title)
                     .fontWeight(.semibold)
@@ -35,25 +38,25 @@ struct DetailScreen: View {
                     HStack{
                         Text("Jumlah")
                         Spacer()
-                        Text("\(jumlah)")
+                        Text("\(toolViewmodell.tools[index].quantity)")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Watt")
                         Spacer()
-                        Text(customFormat(watt)+" W")
+                        Text(customFormat(Double(toolViewmodell.tools[index].power))+" W")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Waktu")
                         Spacer()
-                        Text("\(waktu) jam/hari")
+                        Text("\(toolViewmodell.tools[index].usageTimePerHour) jam/hari")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Hari")
                         Spacer()
-                        Text("\(hari) hari")
+                        Text("\(toolViewmodell.tools[index].repeatDays) hari")
                             .fontWeight(.medium)
                     }
                 }
@@ -64,20 +67,20 @@ struct DetailScreen: View {
                     HStack{
                         Text("Wh/hari")
                         Spacer()
-                        Text("\(customFormat(whPerHari)) Wh")
+                        Text("\(customFormat(Double(toolViewmodell.tools[index].power * toolViewmodell.tools[index].usageTimePerHour))) Wh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("kWh/hari")
                         Spacer()
-                        Text("\(customFormat(kwhPerHari)) kWh")
+                        Text("\(customFormat(toolViewmodell.calculateKwhPerDay(tool: toolViewmodell.tools[index]))) kWh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Biaya/hari")
                             .fontWeight(.regular)
                         Spacer()
-                        Text("Rp \(customFormat(biayaPerHari))")
+                        Text("Rp \(customFormat(toolViewmodell.calculateUsagePerday(tool: toolViewmodell.tools[index])))")
                             .fontWeight(.medium)
                     }
                 }
@@ -89,20 +92,20 @@ struct DetailScreen: View {
                     HStack{
                         Text("Wh/bulan")
                         Spacer()
-                        Text("\(customFormat(whPerBulan)) Wh")
+                        Text("\(customFormat(Double(toolViewmodell.tools[index].power * toolViewmodell.tools[index].usageTimePerHour * (toolViewmodell.tools[index].repeatDays * 4)))) Wh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("kWh/bulan")
                         Spacer()
-                        Text("\(customFormat(kwhPerBulan)) kWh")
+                        Text("\(customFormat(toolViewmodell.calculateKwhPerMonth(tool: toolViewmodell.tools[index]))) kWh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Biaya/bulan")
                             .fontWeight(.regular)
                         Spacer()
-                        Text("Rp \(customFormat(biayaPerBulan))")
+                        Text("Rp \(customFormat(toolViewmodell.calculateUsageCost(tool: toolViewmodell.tools[index])))")
                             .fontWeight(.medium)
                     }
                 }
@@ -185,8 +188,8 @@ func customFormat(_ number: Double) -> String  {
     return formattedString
 }
 
-struct DetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailScreen()
-    }
-}
+//struct DetailScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailScreen()
+//    }
+//}
