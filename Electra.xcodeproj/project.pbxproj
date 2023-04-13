@@ -10,6 +10,7 @@
 		006702E329E02D32000C461E /* Kalkulasi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006702E229E02D32000C461E /* Kalkulasi.swift */; };
 		0067030129E3D96B000C461E /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0067030029E3D96B000C461E /* Homepage.swift */; };
 		0514D8F029DE6072002C525B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514D8EF29DE6072002C525B /* Home.swift */; };
+		05D19EE629E57090008E65A6 /* InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D19EE529E57090008E65A6 /* InfoPage.swift */; };
 		09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */; };
 		09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */; };
 		09E9CAB029DD1FC0000B8FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09E9CAAF29DD1FC0000B8FE9 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		006702E229E02D32000C461E /* Kalkulasi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kalkulasi.swift; sourceTree = "<group>"; };
 		0067030029E3D96B000C461E /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		0514D8EF29DE6072002C525B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		05D19EE529E57090008E65A6 /* InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPage.swift; sourceTree = "<group>"; };
 		09E9CAA829DD1FBF000B8FE9 /* Electra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Electra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraApp.swift; sourceTree = "<group>"; };
 		09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,14 @@
 				006702E229E02D32000C461E /* Kalkulasi.swift */,
 			);
 			path = Kalkulasi;
+			sourceTree = "<group>";
+		};
+		05D19EE429E57067008E65A6 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				05D19EE529E57090008E65A6 /* InfoPage.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		05E90D7329DE610D00A1D1F9 /* Home */ = {
@@ -162,6 +172,7 @@
 		09E9CAD529DD1FD9000B8FE9 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				05D19EE429E57067008E65A6 /* Info */,
 				006702DF29E02C98000C461E /* Kalkulasi */,
 				33C9308729DE81DA00E29629 /* Budgeting Plan */,
 				46FB82B429DD889A00EF4571 /* Detail */,
@@ -326,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D19EE629E57090008E65A6 /* InfoPage.swift in Sources */,
 				46FB82B629DD88E300EF4571 /* DetailScreen.swift in Sources */,
 				09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */,
 				006702E329E02D32000C461E /* Kalkulasi.swift in Sources */,

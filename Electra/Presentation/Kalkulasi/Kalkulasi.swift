@@ -49,12 +49,12 @@ struct Kalkulasi: View {
                         HStack {
                             Text("Beban Alat")
                                 .font(.system(size: 15, weight: .medium))
-                            .foregroundColor(Color("TextColor"))
+                                .foregroundColor(Color("TextColor"))
                             Image(systemName: "questionmark.circle")
                                 .font(.system(size: 12))
                                 .foregroundColor(Color("Box"))
                                 .contextMenu{
-                                        Text("Daya listrik yang digunakan agar alat elektronik menyala")
+                                    Text("Daya listrik yang digunakan agar alat elektronik menyala")
                                 }
                         }
                         TextField("Watt/Kilowatt/Ampere", text: .constant(""))
@@ -106,7 +106,6 @@ struct Kalkulasi: View {
                 }
             }
         }
-        
     }
 }
 

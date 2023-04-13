@@ -99,7 +99,7 @@ struct Home: View {
                         .sheet(isPresented: $addItem){
                             Kalkulasi(addItem: $addItem)
                                 .presentationDetents([.medium, .large])
-                                
+                            
                         }
                     }
                     .padding(.horizontal, 32)
@@ -124,7 +124,7 @@ struct Home: View {
                         .listStyle(.plain)
                         .padding(16)
                 }
-                Text("Info")
+                InfoPage()
                     .tabItem{
                         Image(systemName: "questionmark.circle")
                         Text("Info")
@@ -136,9 +136,9 @@ struct Home: View {
             }
             .accentColor(Color("Box"))
             .navigationTitle("")
-            }
         }
     }
+}
 
 struct ProgressBar: View {
     var body: some View{
