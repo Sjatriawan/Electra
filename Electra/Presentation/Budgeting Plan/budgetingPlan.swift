@@ -10,29 +10,20 @@ import SwiftUI
 struct BudgetingPlan: View {
     @State private var budgetInput: String = ""
     @State private var tarifInput: String = ""
-    
     var body: some View {
         NavigationStack{
             VStack {
-                VStack{
-                    Text("Atur Budgetmu")
-                        .padding(.top, 10)
-                        .font(.headline)
-                        .foregroundColor(Color.white)
-                }
+                Image("cash_wallet")
+                    .shadow(color: .white.opacity(0.6), radius: 40)
+                    .position(.init(x: 200, y: 167))
                 
-                VStack{
-                    Spacer()
-                    ZStack {
-                        RadialGradient(gradient: Gradient(colors: [.white.opacity(0.3),CustomColor.boxColor]), center:.center, startRadius: 0, endRadius: 140)
-                        Image("cash_wallet")
-                    }
-                    Spacer()
-                }
-                ZStack{
-                    Color.white.cornerRadius(32).ignoresSafeArea()
-                    VStack (spacing: 64){
-                        VStack{
+                VStack {
+                    ZStack{
+                        Color.white.cornerRadius(32)
+                            .edgesIgnoringSafeArea(.bottom)
+                            .frame(minHeight: 312)
+                        //                            .ignoresSafeArea()
+                        VStack {
                             Grid(alignment: .leading){
                                 GridRow{
                                     Text("Budget")
@@ -40,55 +31,57 @@ struct BudgetingPlan: View {
                                         .foregroundColor(CustomColor.textColor)
                                     TextField("Target Tagihan Listrik/Bulan", text: $budgetInput)
                                         .font(.system(size: 15, weight: .regular))
-                                        .overlay{
-                                            Divider()
-                                                .background(Color("textFieldLineSeparator"))
-                                                .offset(x: 0, y: 20)
-                                                .frame(width: 212)
-                                        }
+                                        .keyboardType(.decimalPad)
+                                        .overlay(
+                                            VStack{Divider().offset(x: 0, y: 15)})
                                 }
                                 .padding(.horizontal, 32)
-                                .padding(.bottom, 22)
+                                .padding(.vertical, 22)
+                                
                                 GridRow{
                                     Text("Tarif")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
                                     TextField("Tarif Listrik/kWh", text: $tarifInput)
                                         .font(.system(size: 15, weight: .regular))
-                                        .overlay{
-                                            Divider()
-                                                .background(Color("textFieldLineSeparator"))
-                                                .offset(x: 0, y: 20)
-                                                .frame(width: 250)
-                                        }
+                                        .keyboardType(.decimalPad)
+                                        .overlay(VStack{Divider().offset(x: 0, y: 15)})
                                 }
                                 .padding(.horizontal, 32)
+                                .padding(.vertical, 22)
                             }
-                        }
-                        
-                        VStack{
+                            
                             NavigationLink {
                                 Home()
                                     .navigationBarBackButtonHidden(true)
                             }
+                            
                         label: {
                             Text("Simpan")
+                                .frame(maxWidth: .infinity, minHeight: 58)
                         }
-                            
-                        .frame(maxWidth: .infinity, maxHeight: 58)
-                        .background(CustomColor.boxColor)
+                        .frame(maxWidth: .infinity, minHeight: 58)
+                        .background(( !budgetInput.isEmpty && !tarifInput.isEmpty) ? CustomColor.boxColor : CustomColor.disabledColor)
                         .foregroundColor(Color.white)
                         .font(.headline)
                         .cornerRadius(8)
                         .padding(.horizontal, 32)
+                        .padding(.vertical, 22)
                         .disabled(budgetInput.isEmpty || tarifInput.isEmpty)
-                            
                         }
                     }
                 }
-            }.background(
-                CustomColor.boxColor
-            )
+            }
+            .background(
+                CustomColor.boxColor)
+            .toolbar{
+                ToolbarItem(placement: .principal)
+                {
+                    Text("Atur Budget")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                }
+            }.navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -97,6 +90,7 @@ struct CustomColor {
     static let boxColor = Color("Box")
     static let boxColor1 = Color("Box 1")
     static let textColor = Color("text Color")
+    static let disabledColor = Color("disable")
 }
 
 struct BudgetingPlan_Previews: PreviewProvider {
@@ -104,4 +98,3 @@ struct BudgetingPlan_Previews: PreviewProvider {
         BudgetingPlan()
     }
 }
-
