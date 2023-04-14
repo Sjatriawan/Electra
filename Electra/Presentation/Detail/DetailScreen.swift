@@ -26,13 +26,13 @@ struct DetailScreen: View {
     @State var addItem: Bool = false
     var body: some View {
         NavigationView {
-            VStack(spacing: 50) {
-                VStack(spacing: 10){
+            VStack(spacing: 61) {
+                VStack(spacing: 16){
                     Text(nama)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.title)
                         .fontWeight(.semibold)
-                    VStack(spacing: 3){
+                    VStack(spacing: 4){
                         HStack{
                             Text("Jumlah")
                             Spacer()
@@ -73,7 +73,7 @@ struct DetailScreen: View {
                     Rectangle()
                         .frame(height: 0.5, alignment: .bottom)
                     
-                    VStack(spacing: 3){
+                    VStack(spacing: 4){
                         HStack{
                             Text("Wh/hari")
                             Spacer()
@@ -98,7 +98,7 @@ struct DetailScreen: View {
                     Rectangle()
                         .frame(height: 0.5, alignment: .bottom)
                     
-                    VStack(spacing: 3){
+                    VStack(spacing: 4){
                         HStack{
                             Text("Wh/bulan")
                             Spacer()
@@ -148,7 +148,8 @@ struct DetailScreen: View {
                 
                 Spacer()
             }
-            .padding()
+            .padding(.vertical, 52)
+            .padding(.horizontal, 32)
             .alert(isPresented: $showingAlert){
                 Alert(
                     title: Text("Menghapus Data"),
@@ -163,8 +164,6 @@ struct DetailScreen: View {
                     }
                 )
             }
-//            .navigationBarTitleDisplayMode(.inline)
-            
         }
     }
 }

@@ -103,14 +103,7 @@ struct Home: View {
                         }
                     }
                     .padding(.horizontal, 32)
-                    List{
-                            //                        NavigationLink{
-                            //                            DetailScreen()
-                            //                        } label: {
-                            //                            ListContent()
-                            //                        }
-                        
-                        NavigationLink(destination: DetailScreen()
+                    List{NavigationLink(destination: DetailScreen()
                         .navigationTitle("Informasi Alat")
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarItems(
@@ -124,13 +117,10 @@ struct Home: View {
                                     .presentationDetents([.medium, .large])
                                 
                             }
-                        )
-                                       ,
-                                       label: {
+                        ), label: {
                             ListContent()
                         })
                         .listRowSeparator(.hidden)
-
                     }
                     .listStyle(.plain)
                     .padding(16)
