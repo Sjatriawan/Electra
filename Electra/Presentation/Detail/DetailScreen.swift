@@ -166,7 +166,7 @@ struct DetailScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading:
-                    NavigationLink(destination: SettingUp(), label: {
+                    NavigationLink(destination: Text("page"), label: {
                         Image(systemName: "chevron.left")
                     })
 //                    Button(action: {
