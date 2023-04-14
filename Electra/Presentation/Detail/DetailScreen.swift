@@ -23,6 +23,7 @@ struct DetailScreen: View {
     let kwhPerBulan: Double = 57.6
     let biayaPerBulan: Double = 86400
     
+    @State var addItem: Bool = false
     var body: some View {
         NavigationView {
             VStack(spacing: 50) {
@@ -165,23 +166,28 @@ struct DetailScreen: View {
             .navigationTitle("Informasi Alat")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
-                leading:
-                    NavigationLink(destination: Text("page"), label: {
-                        Image(systemName: "chevron.left")
-                    })
+//                leading:
+//                    NavigationLink(destination: Text("aa"), label: {
+//                        Image(systemName: "chevron.left")
+//                    })
 //                    Button(action: {
 //                        // Handle back button action
 //                    }, label: {
 //                        Image(systemName: "chevron.left")
 //                        // Text("Kembali")
 //                    })
-                ,
+//                ,
                 trailing: Button(action: {
-                    // Handle edit button action
+                    addItem.toggle()
                 }, label: {
-                    // Text("Edit")
-                    Image(systemName: "square.and.pencil")
-                })
+//                        Text("Edit")
+                            Image(systemName: "square.and.pencil")
+                    })
+                .sheet(isPresented: $addItem){
+                    Kalkulasi(addItem: $addItem)
+                        .presentationDetents([.medium, .large])
+                    
+                }
             )
         }
     }
