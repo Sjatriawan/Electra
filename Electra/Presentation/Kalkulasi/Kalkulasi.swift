@@ -108,6 +108,7 @@ struct Kalkulasi: View {
                                     .padding(.top, 35)
                                     .foregroundColor(Color("textFieldLineSeparator"))
                             )
+//                            .keyboardType(.numberPad)
                     }
                     GridRow{
                         Text("Hari")

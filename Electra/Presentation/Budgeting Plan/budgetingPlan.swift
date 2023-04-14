@@ -31,7 +31,7 @@ struct BudgetingPlan: View {
                                         .foregroundColor(CustomColor.textColor)
                                     TextField("Target Tagihan Listrik/Bulan", text: $budgetInput)
                                         .font(.system(size: 15, weight: .regular))
-                                        .keyboardType(.decimalPad)
+//                                        .keyboardType(.numberPad)
                                         .overlay(
                                             VStack{Divider().offset(x: 0, y: 15)})
                                 }
@@ -44,7 +44,7 @@ struct BudgetingPlan: View {
                                         .foregroundColor(CustomColor.textColor)
                                     TextField("Tarif Listrik/kWh", text: $tarifInput)
                                         .font(.system(size: 15, weight: .regular))
-                                        .keyboardType(.decimalPad)
+//                                        .keyboardType(.decimalPad)
                                         .overlay(VStack{Divider().offset(x: 0, y: 15)})
                                 }
                                 .padding(.horizontal, 32)
