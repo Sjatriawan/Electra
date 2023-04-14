@@ -14,8 +14,23 @@ struct BudgetingPlan: View {
     @StateObject var toolViewModell = ToolViewModel()
     @State private var tarif: String = ""
     @State private var biaya: String = ""
-    
+    private let numberFormatter: NumberFormatter
+       
+    init() {
+        numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale.current
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.zeroSymbol = ""
+        //        Use Symbol
+        //        numberFormatter.currencyCode = "IDR"
+        //        numberFormatter.numberStyle = .currency
+        //        numberFormatter.maximumFractionDigits = 2
+        
+        
+    }
     var body: some View {
+        
         NavigationStack{
             VStack {
                 Image("cash_wallet")
@@ -33,12 +48,13 @@ struct BudgetingPlan: View {
                                 GridRow{
                                     Text("Budget")
                                         .font(.system(size: 15, weight: .medium))
-                                        .foregroundColor(CustomColor.textColor)
-                                    TextField("Target Tagihan Listrik/Bulan", text: $budgetInput)
-                                        .font(.system(size: 15, weight: .regular))
-                                        .keyboardType(.decimalPad)
-                                        .overlay(
-                                            VStack{Divider().offset(x: 0, y: 15)})
+                                    TextField("Target Tagihan Listrik/Bulan", value: $budgetInput,formatter: numberFormatter
+                                    )
+                                    .font(.system(size: 15, weight: .regular))
+                                    .keyboardType(.decimalPad)
+                                    .overlay(
+                                        VStack{Divider().offset(x: 0, y: 15)})
+                                    
 
                                 }
                                 .padding(.horizontal, 32)
@@ -48,7 +64,8 @@ struct BudgetingPlan: View {
                                     Text("Tarif")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Tarif Listrik/kWh", text: $tarifInput)
+                                    TextField("Tarif Listrik/kWh", value: $tarifInput, formatter: numberFormatter)
+                                    
                                         .font(.system(size: 15, weight: .regular))
                                         .keyboardType(.decimalPad)
                                         .overlay(VStack{Divider().offset(x: 0, y: 15)})
@@ -64,19 +81,19 @@ struct BudgetingPlan: View {
                             } label: {
                                 Text("Simpan")
                                     .frame(maxWidth: .infinity, minHeight: 58)
-                            }
-                            .frame(maxWidth: .infinity, minHeight: 58)
-                            .background(( !budgetInput.isEmpty && !tarifInput.isEmpty) ? CustomColor.boxColor : CustomColor.disabledColor)
-                            .foregroundColor(Color.white)
-                            .font(.headline)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 32)
-                            .padding(.vertical, 22)
-                            .disabled(budgetInput.isEmpty || tarifInput.isEmpty)
-                            .simultaneousGesture(TapGesture().onEnded({
-                                budgetingViewModel.addBudgeting(tarif: Double(tarifInput) ?? 0, biaya: Double(budgetInput) ?? 0)
-                                tarifInput = ""
-                                budgetInput = ""
+                            
+                        label: {
+                            Text("Simpan")
+                                .frame(maxWidth: .infinity, minHeight: 58)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 58)
+                        .background((budgetInput != 0 && tarifInput != 0) ? CustomColor.boxColor : CustomColor.disabledColor)
+                        .foregroundColor(Color.white)
+                        .font(.headline)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 32)
+                        .padding(.vertical, 22)
+                        .disabled(budgetInput == 0 || tarifInput == 0)
                             }))
                         }
                     }

@@ -1,9 +1,9 @@
-//
-//  ContentView.swift
-//  Listrik
-//
-//  Created by Ghita Aulia Hidayat on 04/04/23.
-//
+    //
+    //  ContentView.swift
+    //  Listrik
+    //
+    //  Created by Ghita Aulia Hidayat on 04/04/23.
+    //
 
 import SwiftUI
 
@@ -143,7 +143,7 @@ struct Home: View {
                         .listStyle(.plain)
                         .padding(16)
                 }
-                Text("Info")
+                InfoPage()
                     .tabItem{
                         Image(systemName: "questionmark.circle")
                         Text("Info")
