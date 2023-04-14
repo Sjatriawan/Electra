@@ -101,7 +101,6 @@ struct Home: View {
                         .sheet(isPresented: $addItem){
                             Kalkulasi(viewmodel: budgetHomeViewmodel, toolViewModel: toolViewmodell, addItem: $addItem)
                                 .presentationDetents([.medium, .large])
-                            
                         }
                     }
                     .padding(.horizontal, 32)
