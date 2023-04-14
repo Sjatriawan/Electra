@@ -19,7 +19,6 @@
 		09E9CAC729DD1FC0000B8FE9 /* ElectraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAC629DD1FC0000B8FE9 /* ElectraUITests.swift */; };
 		09E9CAC929DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAC829DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift */; };
 		09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAD729DD204B000B8FE9 /* OnBoardingScreen.swift */; };
-		09E9CADA29DD217B000B8FE9 /* SettingUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAD929DD217B000B8FE9 /* SettingUp.swift */; };
 		33C9308B29DE833700E29629 /* BudgetingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9308A29DE833700E29629 /* BudgetingPlan.swift */; };
 		46FB82B629DD88E300EF4571 /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB82B529DD88E300EF4571 /* DetailScreen.swift */; };
 /* End PBXBuildFile section */
@@ -57,7 +56,6 @@
 		09E9CAC629DD1FC0000B8FE9 /* ElectraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraUITests.swift; sourceTree = "<group>"; };
 		09E9CAC829DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		09E9CAD729DD204B000B8FE9 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
-		09E9CAD929DD217B000B8FE9 /* SettingUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUp.swift; sourceTree = "<group>"; };
 		33C9308A29DE833700E29629 /* BudgetingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingPlan.swift; sourceTree = "<group>"; };
 		46FB82B529DD88E300EF4571 /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				09E9CAD729DD204B000B8FE9 /* OnBoardingScreen.swift */,
-				09E9CAD929DD217B000B8FE9 /* SettingUp.swift */,
 			);
 			path = "Getting Started";
 			sourceTree = "<group>";
@@ -342,7 +339,6 @@
 				09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */,
 				006702E329E02D32000C461E /* Kalkulasi.swift in Sources */,
 				33C9308B29DE833700E29629 /* BudgetingPlan.swift in Sources */,
-				09E9CADA29DD217B000B8FE9 /* SettingUp.swift in Sources */,
 				0514D8F029DE6072002C525B /* Home.swift in Sources */,
 				09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */,
 				09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */,
