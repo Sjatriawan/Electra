@@ -168,7 +168,8 @@ struct DetailScreen: View {
             .navigationBarItems(
                 trailing: Button(action: {
                     addItem.toggle()
-                }, label: {                            Image(systemName: "square.and.pencil")
+                }, label: {
+                    Image(systemName: "square.and.pencil")
                     })
                 .sheet(isPresented: $addItem){
                     Kalkulasi(addItem: $addItem)
