@@ -163,20 +163,8 @@ struct DetailScreen: View {
                     }
                 )
             }
-            .navigationTitle("Informasi Alat")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    addItem.toggle()
-                }, label: {
-                    Image(systemName: "square.and.pencil")
-                    })
-                .sheet(isPresented: $addItem){
-                    Kalkulasi(addItem: $addItem)
-                        .presentationDetents([.medium, .large])
-                    
-                }
-            )
+//            .navigationBarTitleDisplayMode(.inline)
+            
         }
     }
 }

@@ -138,7 +138,7 @@ struct Kalkulasi: View {
                 Spacer()
             }
             .padding(35)
-            .navigationTitle("Kalkulasi")
+            
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .confirmationAction){

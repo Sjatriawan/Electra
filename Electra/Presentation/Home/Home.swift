@@ -1,9 +1,9 @@
-//
-//  ContentView.swift
-//  Listrik
-//
-//  Created by Ghita Aulia Hidayat on 04/04/23.
-//
+    //
+    //  ContentView.swift
+    //  Listrik
+    //
+    //  Created by Ghita Aulia Hidayat on 04/04/23.
+    //
 
 import SwiftUI
 
@@ -104,12 +104,33 @@ struct Home: View {
                     }
                     .padding(.horizontal, 32)
                     List{
-                        NavigationLink{
-                            DetailScreen()
-                        } label: {
+                            //                        NavigationLink{
+                            //                            DetailScreen()
+                            //                        } label: {
+                            //                            ListContent()
+                            //                        }
+                        
+                        NavigationLink(destination: DetailScreen()
+                        .navigationTitle("Informasi Alat")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarItems(
+                            trailing: Button(action: {
+                                addItem.toggle()
+                            }, label: {
+                                Image(systemName: "square.and.pencil")
+                                })
+                            .sheet(isPresented: $addItem){
+                                Kalkulasi(addItem: $addItem)
+                                    .presentationDetents([.medium, .large])
+                                
+                            }
+                        )
+                                       ,
+                                       label: {
                             ListContent()
-                        }
+                        })
                         .listRowSeparator(.hidden)
+
                     }
                     .listStyle(.plain)
                     .padding(16)
