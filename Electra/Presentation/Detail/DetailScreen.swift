@@ -166,22 +166,9 @@ struct DetailScreen: View {
             .navigationTitle("Informasi Alat")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
-//                leading:
-//                    NavigationLink(destination: Text("aa"), label: {
-//                        Image(systemName: "chevron.left")
-//                    })
-//                    Button(action: {
-//                        // Handle back button action
-//                    }, label: {
-//                        Image(systemName: "chevron.left")
-//                        // Text("Kembali")
-//                    })
-//                ,
                 trailing: Button(action: {
                     addItem.toggle()
-                }, label: {
-//                        Text("Edit")
-                            Image(systemName: "square.and.pencil")
+                }, label: {                            Image(systemName: "square.and.pencil")
                     })
                 .sheet(isPresented: $addItem){
                     Kalkulasi(addItem: $addItem)
