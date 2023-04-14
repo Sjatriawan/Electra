@@ -8,9 +8,25 @@
 import SwiftUI
 
 struct BudgetingPlan: View {
-    @State private var budgetInput: String = ""
-    @State private var tarifInput: String = ""
+    @State private var budgetInput: Double = 0
+    @State private var tarifInput: Double = 0
+    private let numberFormatter: NumberFormatter
+    
+    init() {
+        numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale.current
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.zeroSymbol = ""
+        //        Use Symbol
+        //        numberFormatter.currencyCode = "IDR"
+        //        numberFormatter.numberStyle = .currency
+        //        numberFormatter.maximumFractionDigits = 2
+        
+        
+    }
     var body: some View {
+        
         NavigationStack{
             VStack {
                 Image("cash_wallet")
@@ -29,11 +45,13 @@ struct BudgetingPlan: View {
                                     Text("Budget")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Target Tagihan Listrik/Bulan", text: $budgetInput)
-                                        .font(.system(size: 15, weight: .regular))
-//                                        .keyboardType(.numberPad)
-                                        .overlay(
-                                            VStack{Divider().offset(x: 0, y: 15)})
+                                    TextField("Target Tagihan Listrik/Bulan", value: $budgetInput,formatter: numberFormatter
+                                    )
+                                    .font(.system(size: 15, weight: .regular))
+                                    .keyboardType(.decimalPad)
+                                    .overlay(
+                                        VStack{Divider().offset(x: 0, y: 15)})
+                                    
                                 }
                                 .padding(.horizontal, 32)
                                 .padding(.vertical, 22)
@@ -42,9 +60,10 @@ struct BudgetingPlan: View {
                                     Text("Tarif")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Tarif Listrik/kWh", text: $tarifInput)
+                                    TextField("Tarif Listrik/kWh", value: $tarifInput, formatter: numberFormatter)
+                                    
                                         .font(.system(size: 15, weight: .regular))
-//                                        .keyboardType(.decimalPad)
+                                        .keyboardType(.decimalPad)
                                         .overlay(VStack{Divider().offset(x: 0, y: 15)})
                                 }
                                 .padding(.horizontal, 32)
@@ -61,13 +80,13 @@ struct BudgetingPlan: View {
                                 .frame(maxWidth: .infinity, minHeight: 58)
                         }
                         .frame(maxWidth: .infinity, minHeight: 58)
-                        .background(( !budgetInput.isEmpty && !tarifInput.isEmpty) ? CustomColor.boxColor : CustomColor.disabledColor)
+                        .background((budgetInput != 0 && tarifInput != 0) ? CustomColor.boxColor : CustomColor.disabledColor)
                         .foregroundColor(Color.white)
                         .font(.headline)
                         .cornerRadius(8)
                         .padding(.horizontal, 32)
                         .padding(.vertical, 22)
-                        .disabled(budgetInput.isEmpty || tarifInput.isEmpty)
+                        .disabled(budgetInput == 0 || tarifInput == 0)
                         }
                     }
                 }

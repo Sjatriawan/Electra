@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-    //enum Days: String, CaseIterable, Identifiable {
-    //    case Setiaphari, Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu
-    //    var id: Self {self}
-    //}
-
-    //private var selectedDay: Days = .Minggu
-
 struct Kalkulasi: View {
     @Binding var addItem: Bool
         //    @State var totalAppliance: Int = 0
@@ -28,8 +21,6 @@ struct Kalkulasi: View {
         //    @State private var everyDay = "Setiap hari"
         //    @State private var selectedDay = "Se
         //    @State private var Days: [String] = [ "Setiap hari","Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
-    
-    
     @State private var selectedDay = "1"
     @State private var totalDay: [String] = ["1", "2", "3", "4", "5", "6", "7"]
     
@@ -153,6 +144,7 @@ struct Kalkulasi: View {
                 ToolbarItem(placement: .confirmationAction){
                     Button("Simpan"){
                         print("saved")
+                        addItem.toggle()
                     }
                 }
             }
