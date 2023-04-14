@@ -107,7 +107,7 @@ struct Home: View {
                     .padding(.horizontal, 32)
                     List{
                         ForEach(toolViewmodell.tools, id: \.self){ tool in
-                            NavigationLink(destination: DetailScreen(budgetViewmodel: budgetHomeViewmodel, toolViewmodell: toolViewmodell, index: tool.index)) {
+                            NavigationLink(destination: DetailScreen(toolViewmodell: toolViewmodell, budgetViewmodel: budgetHomeViewmodel, index: tool.index)) {
                                 HStack(spacing: 16){
                                     Text("\(tool.quantity)x")
                                         .font(.system(size: 12, weight: .medium, design: .default))

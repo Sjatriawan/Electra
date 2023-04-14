@@ -8,29 +8,21 @@
 import SwiftUI
 
 struct DetailScreen: View {
-    @ObservedObject var budgetViewmodel: BudgetingViewModel
     @ObservedObject var toolViewmodell: ToolViewModel
+    @ObservedObject var budgetViewmodel: BudgetingViewModel
     @State var index: Int
     @State private var showingAlert = false
+    @State private var toNextScreen: Bool = false
     @State private var isEdit = false
-    let nama: String = "Kulkas Mini"
-    let jumlah: Int = 1
-    let watt: Double = 80
-    let ampere: Double = 0.36
-    let volt: Double = 220
-    let waktu: Int = 24
-    let hari: Int = 30
-    let whPerHari: Double = 1920
-    let kwhPerHari: Double = 1.92
-    let biayaPerHari: Double = 2880
-    let whPerBulan: Double = 57600
-    let kwhPerBulan: Double = 57.6
-    let biayaPerBulan: Double = 86400
+    
+    var detailData: Tool {
+        toolViewmodell.getDetail(index: index)
+    }
     
     var body: some View {
         VStack(spacing: 50) {
             VStack(spacing: 10){
-                Text(toolViewmodell.tools[index].name)
+                Text(detailData.name)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title)
                     .fontWeight(.semibold)
@@ -38,25 +30,25 @@ struct DetailScreen: View {
                     HStack{
                         Text("Jumlah")
                         Spacer()
-                        Text("\(toolViewmodell.tools[index].quantity)")
+                        Text("\(detailData.quantity)")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Watt")
                         Spacer()
-                        Text(customFormat(Double(toolViewmodell.tools[index].power))+" W")
+                        Text(customFormat(Double(detailData.power))+" W")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Waktu")
                         Spacer()
-                        Text("\(toolViewmodell.tools[index].usageTimePerHour) jam/hari")
+                        Text("\(detailData.usageTimePerHour) jam/hari")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Hari")
                         Spacer()
-                        Text("\(toolViewmodell.tools[index].repeatDays) hari")
+                        Text("\(detailData.repeatDays) hari")
                             .fontWeight(.medium)
                     }
                 }
@@ -67,20 +59,20 @@ struct DetailScreen: View {
                     HStack{
                         Text("Wh/hari")
                         Spacer()
-                        Text("\(customFormat(Double(toolViewmodell.tools[index].power * toolViewmodell.tools[index].usageTimePerHour))) Wh")
+                        Text("\(customFormat(Double(detailData.power * detailData.usageTimePerHour))) Wh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("kWh/hari")
                         Spacer()
-                        Text("\(customFormat(toolViewmodell.calculateKwhPerDay(tool: toolViewmodell.tools[index]))) kWh")
+                        Text("\(customFormat(toolViewmodell.calculateKwhPerDay(tool: detailData))) kWh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Biaya/hari")
                             .fontWeight(.regular)
                         Spacer()
-                        Text("Rp \(customFormat(toolViewmodell.calculateUsagePerday(tool: toolViewmodell.tools[index])))")
+                        Text("Rp \(customFormat(toolViewmodell.calculateUsagePerday(tool: detailData)))")
                             .fontWeight(.medium)
                     }
                 }
@@ -92,20 +84,20 @@ struct DetailScreen: View {
                     HStack{
                         Text("Wh/bulan")
                         Spacer()
-                        Text("\(customFormat(Double(toolViewmodell.tools[index].power * toolViewmodell.tools[index].usageTimePerHour * (toolViewmodell.tools[index].repeatDays * 4)))) Wh")
+                        Text("\(customFormat(Double(detailData.power * detailData.usageTimePerHour * (detailData.repeatDays * 4)))) Wh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("kWh/bulan")
                         Spacer()
-                        Text("\(customFormat(toolViewmodell.calculateKwhPerMonth(tool: toolViewmodell.tools[index]))) kWh")
+                        Text("\(customFormat(toolViewmodell.calculateKwhPerMonth(tool: detailData))) kWh")
                             .fontWeight(.medium)
                     }
                     HStack{
                         Text("Biaya/bulan")
                             .fontWeight(.regular)
                         Spacer()
-                        Text("Rp \(customFormat(toolViewmodell.calculateUsageCost(tool: toolViewmodell.tools[index])))")
+                        Text("Rp \(customFormat(toolViewmodell.calculateUsageCost(tool: detailData)))")
                             .fontWeight(.medium)
                     }
                 }
@@ -139,14 +131,20 @@ struct DetailScreen: View {
             Spacer()
         }
         .padding()
+        .background{
+            NavigationLink(destination: Home(budgetHomeViewmodel: budgetViewmodel, toolViewmodell: toolViewmodell).navigationBarHidden(true), isActive: $toNextScreen) {
+                EmptyView()
+            }
+        }
         .alert(isPresented: $showingAlert){
             Alert(
                 title: Text("Menghapus Data"),
                 message: Text("Kamu yakin ingin menghapus informasi alat ini?"),
-                primaryButton: .destructive(Text("Hapus")){
+                primaryButton: .default(Text("Hapus")){
                     print("Menghapus....")
-                    // Fungsi untuk menghapus
+                    toolViewmodell.deleteTool(index: index)
                     showingAlert = false
+                    toNextScreen = true
                 },
                 secondaryButton: .default(Text("Batalkan")){
                     showingAlert = false
@@ -165,7 +163,7 @@ struct DetailScreen: View {
                 })
         )
         .sheet(isPresented: $isEdit){
-            EditScreen(addItem: $isEdit)
+            EditScreen(addItem: $isEdit, toolViewmodell: toolViewmodell, index: index)
                 .presentationDetents([.medium, .large])
                 
         }

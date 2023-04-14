@@ -22,10 +22,48 @@ class ToolViewModel: ObservableObject {
         indexing += 1
     }
 
+    func getIndex(index: Int) -> Int {
+        var resultIndex: Int = -1
+        
+        for i in 0..<tools.count {
+            if (tools[i].index == index){
+                resultIndex = i
+            }
+        }
+        
+        return resultIndex
+    }
+    
+    func editTool(index: Int, name: String, quantity: Int, power: Int, usageTimePerHour: Int, repeatDays: Int) {
+        let editTool = Tool(index: index, name: name, quantity: quantity, power: power, usageTimePerHour: usageTimePerHour, repeatDays: repeatDays)
+        var editedIndex: Int = getIndex(index: index)
+        
+        tools[editedIndex] = editTool
+        saveTools()
+    }
+    
+    func getDetail(index: Int) -> Tool {
+        var resultData: Tool = Tool(index: 0, name: "", quantity: 0, power: 0, usageTimePerHour: 0, repeatDays: 0)
+        
+        for i in tools {
+            if (i.index == index){
+                resultData = i
+            }
+        }
+        
+        return resultData
+    }
+
     func saveTools() {
         if let encodedData = try? JSONEncoder().encode(tools) {
             UserDefaults.standard.set(encodedData, forKey: "tools")
         }
+    }
+    
+    func deleteTool(index: Int) {
+        var deletedIndex: Int = getIndex(index: index)
+        tools.remove(at: deletedIndex)
+        saveTools()
     }
 
     func loadTools() {
@@ -36,13 +74,6 @@ class ToolViewModel: ObservableObject {
         }
     }
 
-//    func calculateUsageCost(tool: Tool) -> Double {
-//        let usageTimePerDay = Double(tool.usageTimePerHour) * 24.0 / Double(tool.repeatDays)
-//        let powerInKw = Double(tool.power) / Double(electricityTariff)
-//        let usageInKwh = powerInKw * usageTimePerDay
-//        let cost = usageInKwh * Double(electricityTariff)
-//        return cost
-//    }
     // Calculate budget per day
     func calculateUsagePerday(tool:Tool) -> Double {
         let Wh = Double(tool.power) * Double(tool.quantity) * Double(tool.usageTimePerHour)
