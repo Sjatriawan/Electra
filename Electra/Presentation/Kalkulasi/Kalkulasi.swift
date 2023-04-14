@@ -1,14 +1,37 @@
-//
-//  Kalkulasi.swift
-//  Electra
-//
-//  Created by Sha Nia Siahaan on 07/04/23.
-//
+    //
+    //  Kalkulasi.swift
+    //  Electra
+    //
+    //  Created by Sha Nia Siahaan on 07/04/23.
+    //
 
 import SwiftUI
 
+    //enum Days: String, CaseIterable, Identifiable {
+    //    case Setiaphari, Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu
+    //    var id: Self {self}
+    //}
+
+    //private var selectedDay: Days = .Minggu
+
 struct Kalkulasi: View {
     @Binding var addItem: Bool
+        //    @State var totalAppliance: Int = 0
+        //    enum Days: String, CaseIterable, Identifiable {
+        //        case Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu
+        //        var id: Self {self}
+        //    }
+        //    @State private var selectedDay: String = "Minggu"
+        //    @State private var selectedDay: Days = .Minggu
+    
+        //    @State private var everyday = "Setiap hari"
+        //    @State private var everyDay = "Setiap hari"
+        //    @State private var selectedDay = "Se
+        //    @State private var Days: [String] = [ "Setiap hari","Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+    
+    
+    @State private var selectedDay = "1"
+    @State private var totalDay: [String] = ["1", "2", "3", "4", "5", "6", "7"]
     
     var body: some View {
         NavigationStack {
@@ -38,33 +61,40 @@ struct Kalkulasi: View {
                             .foregroundColor(Color("TextColor"))
                         TextField("Banyaknya alat elektronik", text: .constant(""))
                             .font(.system(size: 15))
-                            .overlay{
-                                Divider()
-                                    .background(Color("textFieldLineSeparator"))
-                                    .offset(x: 0, y: 20)
-                                    .frame(width: 212)
-                            }
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 0.5)
+                                    .padding(.top, 35)
+                                    .foregroundColor(Color("textFieldLineSeparator"))
+                            )
                     }
                     GridRow{
-                        HStack {
+                        HStack(spacing: 5){
                             Text("Beban Alat")
                                 .font(.system(size: 15, weight: .medium))
-                            .foregroundColor(Color("TextColor"))
+                                .foregroundColor(Color("TextColor"))
+                            
                             Image(systemName: "questionmark.circle")
                                 .font(.system(size: 12))
                                 .foregroundColor(Color("Box"))
                                 .contextMenu{
-                                        Text("Daya listrik yang digunakan agar alat elektronik menyala")
+                                    Text("Daya listrik yang digunakan agar alat elektronik menyala")
                                 }
                         }
-                        TextField("Watt/Kilowatt/Ampere", text: .constant(""))
-                            .font(.system(size: 15))
-                            .overlay{
-                                Divider()
-                                    .background(Color("textFieldLineSeparator"))
-                                    .offset(x: 0, y: 20)
-                                    .frame(width: 212)
-                            }
+                        HStack(spacing: 20){
+                            TextField("Jumlah Watt", text: .constant(""))
+                                .font(.system(size: 15))
+                                .overlay(
+                                    Rectangle()
+                                        .frame(height: 0.5)
+                                        .padding(.top, 35)
+                                        .foregroundColor(Color("textFieldLineSeparator"))
+                                )
+                            Text("Watt")
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundColor(Color("TextColor"))
+                        }
+                        
                     }
                     GridRow{
                         Text("Waktu")
@@ -72,25 +102,45 @@ struct Kalkulasi: View {
                             .foregroundColor(Color("TextColor"))
                         TextField("Pemakaian (jam/hari)", text: .constant(""))
                             .font(.system(size: 15))
-                            .overlay{
-                                Divider()
-                                    .background(Color("textFieldLineSeparator"))
-                                    .offset(x: 0, y: 20)
-                                    .frame(width: 212)
-                            }
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 0.5)
+                                    .padding(.top, 35)
+                                    .foregroundColor(Color("textFieldLineSeparator"))
+                            )
                     }
                     GridRow{
                         Text("Hari")
                             .font(.system(size: 15, weight: .medium))
                             .foregroundColor(Color("TextColor"))
-                        TextField("Setiap hari/tertentu", text: .constant(""))
-                            .font(.system(size: 15))
-                            .overlay{
-                                Divider()
-                                    .background(Color("textFieldLineSeparator"))
-                                    .offset(x: 0, y: 20)
-                                    .frame(width: 212)
-                            }
+                        HStack(spacing: 20){
+                            NavigationLink(destination:
+                                            NavigationStack{
+                                List{
+                                    Picker("Pilih hari", selection: $selectedDay){
+                                        ForEach(totalDay, id: \.self){ numberDay in
+                                            Text(numberDay).tag(totalDay)
+                                        }
+                                    }
+                                    .pickerStyle(.inline)
+                                }
+                            }, label: {
+                                TextField("Pilih hari", text: $selectedDay)
+                                    .multilineTextAlignment(.leading)
+                                    .font(.system(size: 15, weight: .medium))
+                                
+                            })
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 0.5)
+                                    .padding(.top, 35)
+                                    .foregroundColor(Color("textFieldLineSeparator"))
+                            )
+                            .foregroundColor(Color("TextColor"))
+                            Text("hari")
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundColor(Color("TextColor"))
+                        }
                     }
                 }
                 Spacer()
