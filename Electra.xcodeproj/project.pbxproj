@@ -10,9 +10,9 @@
 		006702E329E02D32000C461E /* Kalkulasi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006702E229E02D32000C461E /* Kalkulasi.swift */; };
 		0067464F29E505FC006FDB7E /* shania.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0067464E29E505FC006FDB7E /* shania.swift */; };
 		0514D8F029DE6072002C525B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514D8EF29DE6072002C525B /* Home.swift */; };
+		05D19EE629E57090008E65A6 /* InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D19EE529E57090008E65A6 /* InfoPage.swift */; };
 		090F989929E652DA004A12E7 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090F989829E652DA004A12E7 /* Tool.swift */; };
 		090F989B29E652FA004A12E7 /* ToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090F989A29E652FA004A12E7 /* ToolViewModel.swift */; };
-		05D19EE629E57090008E65A6 /* InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D19EE529E57090008E65A6 /* InfoPage.swift */; };
 		09E9CAAC29DD1FBF000B8FE9 /* ElectraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */; };
 		09E9CAAE29DD1FBF000B8FE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */; };
 		09E9CAB029DD1FC0000B8FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09E9CAAF29DD1FC0000B8FE9 /* Assets.xcassets */; };
@@ -21,7 +21,6 @@
 		09E9CAC729DD1FC0000B8FE9 /* ElectraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAC629DD1FC0000B8FE9 /* ElectraUITests.swift */; };
 		09E9CAC929DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAC829DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift */; };
 		09E9CAD829DD204B000B8FE9 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAD729DD204B000B8FE9 /* OnBoardingScreen.swift */; };
-		09E9CADA29DD217B000B8FE9 /* SettingUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9CAD929DD217B000B8FE9 /* SettingUp.swift */; };
 		09F0DE6129E5A2C700AB34E3 /* BudgetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F0DE6029E5A2C700AB34E3 /* BudgetingModel.swift */; };
 		09F0DE6329E5A2E800AB34E3 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F0DE6229E5A2E800AB34E3 /* BudgetViewModel.swift */; };
 		33C9308B29DE833700E29629 /* BudgetingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9308A29DE833700E29629 /* BudgetingPlan.swift */; };
@@ -50,9 +49,9 @@
 		006702E229E02D32000C461E /* Kalkulasi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kalkulasi.swift; sourceTree = "<group>"; };
 		0067464E29E505FC006FDB7E /* shania.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shania.swift; sourceTree = "<group>"; };
 		0514D8EF29DE6072002C525B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		05D19EE529E57090008E65A6 /* InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPage.swift; sourceTree = "<group>"; };
 		090F989829E652DA004A12E7 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		090F989A29E652FA004A12E7 /* ToolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolViewModel.swift; sourceTree = "<group>"; };
-		05D19EE529E57090008E65A6 /* InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPage.swift; sourceTree = "<group>"; };
 		09E9CAA829DD1FBF000B8FE9 /* Electra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Electra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9CAAB29DD1FBF000B8FE9 /* ElectraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraApp.swift; sourceTree = "<group>"; };
 		09E9CAAD29DD1FBF000B8FE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,7 +63,6 @@
 		09E9CAC629DD1FC0000B8FE9 /* ElectraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraUITests.swift; sourceTree = "<group>"; };
 		09E9CAC829DD1FC0000B8FE9 /* ElectraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectraUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		09E9CAD729DD204B000B8FE9 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
-		09E9CAD929DD217B000B8FE9 /* SettingUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUp.swift; sourceTree = "<group>"; };
 		09F0DE6029E5A2C700AB34E3 /* BudgetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingModel.swift; sourceTree = "<group>"; };
 		09F0DE6229E5A2E800AB34E3 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
 		33C9308A29DE833700E29629 /* BudgetingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingPlan.swift; sourceTree = "<group>"; };
@@ -375,7 +373,6 @@
 				090F989929E652DA004A12E7 /* Tool.swift in Sources */,
 				006702E329E02D32000C461E /* Kalkulasi.swift in Sources */,
 				4649348F29E64B0F00412F27 /* EditScreen.swift in Sources */,
-				0067030129E3D96B000C461E /* Homepage.swift in Sources */,
 				09F0DE6329E5A2E800AB34E3 /* BudgetViewModel.swift in Sources */,
 				33C9308B29DE833700E29629 /* BudgetingPlan.swift in Sources */,
 				0514D8F029DE6072002C525B /* Home.swift in Sources */,

@@ -36,7 +36,7 @@ class ToolViewModel: ObservableObject {
     
     func editTool(index: Int, name: String, quantity: Int, power: Int, usageTimePerHour: Int, repeatDays: Int) {
         let editTool = Tool(index: index, name: name, quantity: quantity, power: power, usageTimePerHour: usageTimePerHour, repeatDays: repeatDays)
-        var editedIndex: Int = getIndex(index: index)
+        let editedIndex: Int = getIndex(index: index)
         
         tools[editedIndex] = editTool
         saveTools()
@@ -61,7 +61,7 @@ class ToolViewModel: ObservableObject {
     }
     
     func deleteTool(index: Int) {
-        var deletedIndex: Int = getIndex(index: index)
+        let deletedIndex: Int = getIndex(index: index)
         tools.remove(at: deletedIndex)
         saveTools()
     }

@@ -140,7 +140,7 @@ struct DetailScreen: View {
             Alert(
                 title: Text("Menghapus Data"),
                 message: Text("Kamu yakin ingin menghapus informasi alat ini?"),
-                primaryButton: .default(Text("Hapus")){
+                primaryButton: .destructive(Text("Hapus")){
                     print("Menghapus....")
                     toolViewmodell.deleteTool(index: index)
                     showingAlert = false

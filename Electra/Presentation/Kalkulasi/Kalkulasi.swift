@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Kalkulasi: View {
     @Binding var addItem: Bool
+    @ObservedObject var toolViewModel: ToolViewModel
         //    @State var totalAppliance: Int = 0
         //    enum Days: String, CaseIterable, Identifiable {
         //        case Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu
@@ -21,6 +22,10 @@ struct Kalkulasi: View {
         //    @State private var everyDay = "Setiap hari"
         //    @State private var selectedDay = "Se
         //    @State private var Days: [String] = [ "Setiap hari","Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+    @State private var name = ""
+    @State private var quantity = ""
+    @State private var power = ""
+    @State private var usageTimePerHour = ""
     @State private var selectedDay = "1"
     @State private var totalDay: [String] = ["1", "2", "3", "4", "5", "6", "7"]
     
@@ -73,7 +78,7 @@ struct Kalkulasi: View {
                                 }
                         }
                         HStack(spacing: 20){
-                            TextField("Jumlah Watt", text: .constant(""))
+                            TextField("Jumlah Watt", text: self.$power)
                                 .font(.system(size: 15))
                                 .overlay(
                                     Rectangle()
@@ -143,7 +148,13 @@ struct Kalkulasi: View {
             .toolbar{
                 ToolbarItem(placement: .confirmationAction){
                     Button("Simpan"){
-                        print("saved")
+                        toolViewModel.addTool(
+                            name: self.name,
+                            quantity: Int(self.quantity) ?? 0,
+                            power: Int(self.power) ?? 0,
+                            usageTimePerHour: Int(self.usageTimePerHour) ?? 0,
+                            repeatDays: Int(self.selectedDay) ?? 0
+                        )
                         addItem.toggle()
                     }
                 }

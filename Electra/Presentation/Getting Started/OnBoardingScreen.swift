@@ -11,6 +11,9 @@ let customFont = "SF-Pro-Text-Bold-Italic"
 
 struct OnBoardingScreen: View {
     @State var index = 0
+    @StateObject var budgetingViewModel = BudgetingViewModel()
+    @StateObject var toolViewModell = ToolViewModel()
+    
     var body: some View {
         NavigationStack{
             VStack{

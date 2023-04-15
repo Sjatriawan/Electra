@@ -1,18 +1,18 @@
 //
-//  ContentView.swift
-//  practice1
+//  BudgetPlanScreen.swift
+//  Electra
 //
-//  Created by Nibras Fitri Zuhra on 31/03/23.
+//  Created by Rival Fauzi on 14/04/23.
 //
 
 import SwiftUI
 
-struct BudgetingPlan: View {
+struct BudgetPlanScreen: View {
     @ObservedObject var budgetingViewModel = BudgetingViewModel()
     @ObservedObject var toolViewModell = ToolViewModel()
     @State private var budgetInput: Double = 0
     @State private var tarifInput: Double = 0
-    let numberFormatter: NumberFormatter
+    private let numberFormatter: NumberFormatter
     
     init() {
         numberFormatter = NumberFormatter()
@@ -27,7 +27,6 @@ struct BudgetingPlan: View {
         
         
     }
-    
     var body: some View {
         
         NavigationStack{
@@ -47,7 +46,7 @@ struct BudgetingPlan: View {
                                 GridRow{
                                     Text("Budget")
                                         .font(.system(size: 15, weight: .medium))
-                                        .foregroundColor(CustomColor.textColor)
+                                        .foregroundColor(CustomColor1.textColor)
                                     TextField("Target Tagihan Listrik/Bulan", value: $budgetInput, formatter: numberFormatter
                                     )
                                     .font(.system(size: 15, weight: .regular))
@@ -62,7 +61,7 @@ struct BudgetingPlan: View {
                                 GridRow{
                                     Text("Tarif")
                                         .font(.system(size: 15, weight: .medium))
-                                        .foregroundColor(CustomColor.textColor)
+                                        .foregroundColor(CustomColor1.textColor)
                                     TextField("Tarif Listrik/kWh", value: $tarifInput, formatter: numberFormatter)
                                     
                                         .font(.system(size: 15, weight: .regular))
@@ -81,7 +80,7 @@ struct BudgetingPlan: View {
                                     .frame(maxWidth: .infinity, minHeight: 58)
                             }
                             .frame(maxWidth: .infinity, minHeight: 58)
-                            .background((budgetInput != 0 && tarifInput != 0) ? CustomColor.boxColor : CustomColor.disabledColor)
+                            .background((budgetInput != 0 && tarifInput != 0) ? CustomColor1.boxColor : CustomColor1.disabledColor)
                             .foregroundColor(Color.white)
                             .font(.headline)
                             .cornerRadius(8)
@@ -99,7 +98,7 @@ struct BudgetingPlan: View {
                 }
             }
             .background(
-                CustomColor.boxColor)
+                CustomColor1.boxColor)
             .toolbar{
                 ToolbarItem(placement: .principal)
                 {
@@ -112,15 +111,15 @@ struct BudgetingPlan: View {
     }
 }
 
-struct CustomColor {
+struct CustomColor1 {
     static let boxColor = Color("Box")
     static let boxColor1 = Color("Box 1")
     static let textColor = Color("text Color")
     static let disabledColor = Color("disable")
 }
 
-struct BudgetingPlan_Previews: PreviewProvider {
+struct BudgetPlanScreen_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetingPlan()
+        BudgetPlanScreen()
     }
 }

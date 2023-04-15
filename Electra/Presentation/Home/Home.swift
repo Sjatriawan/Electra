@@ -99,7 +99,7 @@ struct Home: View {
                                 .cornerRadius(12)
                         }
                         .sheet(isPresented: $addItem){
-                            Kalkulasi(viewmodel: budgetHomeViewmodel, toolViewModel: toolViewmodell, addItem: $addItem)
+                            Kalkulasi(addItem: $addItem, toolViewModel: toolViewmodell)
                                 .presentationDetents([.medium, .large])
                         }
                     }
@@ -173,6 +173,7 @@ struct ProgressBar: View {
                 .stroke(
                     Color("tambahButtonColor"), style: StrokeStyle(lineWidth: 16, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
+                .animation(Animation.easeInOut(duration: 1.0))
             VStack{
                 Text("\(toolViewmodell.customFormat(persentase()))%")
                     .font(.system(size: 22, weight: .semibold, design: .default))
