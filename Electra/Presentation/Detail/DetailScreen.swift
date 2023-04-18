@@ -59,7 +59,7 @@ struct DetailScreen: View {
                     HStack{
                         Text("Wh/hari")
                         Spacer()
-                        Text("\(customFormat(Double(detailData.power * detailData.usageTimePerHour))) Wh")
+                        Text("\(customFormat(Double(detailData.power * detailData.usageTimePerHour * detailData.quantity))) Wh")
                             .fontWeight(.medium)
                     }
                     HStack{
@@ -72,7 +72,7 @@ struct DetailScreen: View {
                         Text("Biaya/hari")
                             .fontWeight(.regular)
                         Spacer()
-                        Text("Rp \(customFormat(toolViewmodell.calculateUsagePerday(tool: detailData)))")
+                        Text("Rp \(customFormat(toolViewmodell.calculateUsagePerday(tool: detailData, budgettingPlan: budgetViewmodel.budgetingList[0])))")
                             .fontWeight(.medium)
                     }
                 }
@@ -84,7 +84,7 @@ struct DetailScreen: View {
                     HStack{
                         Text("Wh/bulan")
                         Spacer()
-                        Text("\(customFormat(Double(detailData.power * detailData.usageTimePerHour * (detailData.repeatDays * 4)))) Wh")
+                        Text("\(customFormat(Double(detailData.power * detailData.usageTimePerHour * detailData.quantity * (detailData.repeatDays * 4)))) Wh")
                             .fontWeight(.medium)
                     }
                     HStack{
@@ -97,7 +97,7 @@ struct DetailScreen: View {
                         Text("Biaya/bulan")
                             .fontWeight(.regular)
                         Spacer()
-                        Text("Rp \(customFormat(toolViewmodell.calculateUsageCost(tool: detailData)))")
+                        Text("Rp \(customFormat(toolViewmodell.calculateUsageCost(tool: detailData, budgettingPlan: budgetViewmodel.budgetingList[0])))")
                             .fontWeight(.medium)
                     }
                 }

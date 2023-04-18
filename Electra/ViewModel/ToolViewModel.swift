@@ -9,11 +9,12 @@ import Foundation
 
 class ToolViewModel: ObservableObject {
     @Published var tools: [Tool] = []
-
-    let budgetPlan = 300000 //Rencana biaya listrik
-    let electricityTariff = 1262 // Tarif listrik per KWh
     
     var indexing: Int = 0
+    
+    var budgetingPlan: [BudgetingModel] {
+        return BudgetingViewModel().budgetingList
+    }
 
     func addTool(name: String, quantity: Int, power: Int, usageTimePerHour: Int, repeatDays: Int) {
         let newTool = Tool(index: indexing, name: name, quantity: quantity, power: power, usageTimePerHour: usageTimePerHour, repeatDays: repeatDays)
@@ -75,16 +76,16 @@ class ToolViewModel: ObservableObject {
     }
 
     // Calculate budget per day
-    func calculateUsagePerday(tool:Tool) -> Double {
+    func calculateUsagePerday(tool:Tool, budgettingPlan: BudgetingModel) -> Double {
         let Wh = Double(tool.power) * Double(tool.quantity) * Double(tool.usageTimePerHour)
         let kWh = Wh/1000
-        let budgetDay = kWh * Double(electricityTariff)
+        let budgetDay = kWh * budgettingPlan.tarif
         
         return budgetDay
     }
     // Calculate budget per month
-    func calculateUsageCost(tool: Tool) -> Double {
-        let budgetDay = calculateUsagePerday(tool: tool)
+    func calculateUsageCost(tool: Tool, budgettingPlan: BudgetingModel) -> Double {
+        let budgetDay = calculateUsagePerday(tool: tool, budgettingPlan: budgettingPlan)
         let budgetMonth = budgetDay * Double(tool.repeatDays * 4)
         
         return budgetMonth
@@ -117,18 +118,18 @@ class ToolViewModel: ObservableObject {
  
     */
 
-    var formattedTotalCost: String {
-        let totalCost = calculateTotalUsageCost()
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "id_ID")
-        return formatter.string(from: NSNumber(value: totalCost)) ?? ""
-    }
+//    var formattedTotalCost: String {
+//        let totalCost = calculateTotalUsageCost()
+//        let formatter = NumberFormatter()
+//        formatter.numberStyle = .currency
+//        formatter.locale = Locale(identifier: "id_ID")
+//        return formatter.string(from: NSNumber(value: totalCost)) ?? ""
+//    }
 
-    func calculateTotalUsageCost() -> Double {
+    func calculateTotalUsageCost(budgetingPlan: BudgetingModel) -> Double {
         var totalCost = 0.0
         for tool in tools {
-            let cost = calculateUsageCost(tool: tool)
+            let cost = calculateUsageCost(tool: tool, budgettingPlan: budgetingPlan)
             totalCost += cost
         }
         return totalCost

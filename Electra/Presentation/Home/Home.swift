@@ -23,7 +23,7 @@ struct Home: View {
                                 .foregroundColor(.white)
                             Spacer()
                             NavigationLink {
-                                BudgetingPlan()
+                                BudgetingPlan(budgetingViewModel: budgetHomeViewmodel, toolViewModell: toolViewmodell)
                                     .navigationBarBackButtonHidden(true)
                             } label: {
                                 Image(systemName: "square.and.pencil")
@@ -41,7 +41,7 @@ struct Home: View {
                                         Text("Rp")
                                             .font(.system(size: 13, weight: .bold, design: .default))
                                             .foregroundColor(.white)
-                                        Text("\(toolViewmodell.customFormat(toolViewmodell.calculateTotalUsageCost()))")
+                                        Text("\(toolViewmodell.customFormat(toolViewmodell.calculateTotalUsageCost(budgetingPlan: budgetHomeViewmodel.budgetingList[0])))")
                                             .font(.system(size: 22, weight: .bold, design: .default))
                                             .foregroundColor(.white)
                                     }
@@ -52,7 +52,7 @@ struct Home: View {
                                         Text("Rp.")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
-                                        Text("\(toolViewmodell.customFormat(budgetHomeViewmodel.budgetingList[0].biaya - toolViewmodell.calculateTotalUsageCost()))")
+                                        Text("\(toolViewmodell.customFormat(budgetHomeViewmodel.budgetingList[0].biaya - toolViewmodell.calculateTotalUsageCost(budgetingPlan: budgetHomeViewmodel.budgetingList[0])))")
                                             .font(.system(size: 12, weight: .medium, design: .default))
                                             .foregroundColor(.white)
                                     }
@@ -121,7 +121,7 @@ struct Home: View {
                                             .foregroundColor(Color("TextColor"))
                                     }
                                     Spacer()
-                                    Text("Rp. \(toolViewmodell.customFormat(toolViewmodell.calculateUsageCost(tool: tool)))")
+                                    Text("Rp. \(toolViewmodell.customFormat(toolViewmodell.calculateUsageCost(tool: tool, budgettingPlan: budgetHomeViewmodel.budgetingList[0])))")
                                         .font(.system(size: 15, weight: .medium, design: .default))
                                         .foregroundColor(Color("TextColor"))
                                 }

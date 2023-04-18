@@ -59,7 +59,7 @@ struct OnBoardingScreen: View {
                 }
                 .padding(30)
                 
-                NavigationLink(destination: BudgetingPlan()) {
+                NavigationLink(destination: BudgetingPlan(budgetingViewModel: budgetingViewModel, toolViewModell: toolViewModell)) {
                     Text("Mulai")
                         .frame(maxWidth: .infinity, maxHeight: 50)
                         .background(Color("Box"))

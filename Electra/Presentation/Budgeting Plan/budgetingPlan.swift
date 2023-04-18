@@ -14,7 +14,10 @@ struct BudgetingPlan: View {
     @State private var tarifInput: Double = 0
     let numberFormatter: NumberFormatter
     
-    init() {
+    init(budgetingViewModel: BudgetingViewModel, toolViewModell: ToolViewModel) {
+        self.budgetingViewModel = budgetingViewModel
+        self.toolViewModell = toolViewModell
+        
         numberFormatter = NumberFormatter()
         numberFormatter.locale = Locale.current
         numberFormatter.numberStyle = .decimal
@@ -24,8 +27,6 @@ struct BudgetingPlan: View {
         //        numberFormatter.currencyCode = "IDR"
         //        numberFormatter.numberStyle = .currency
         //        numberFormatter.maximumFractionDigits = 2
-        
-        
     }
     
     var body: some View {
@@ -89,7 +90,7 @@ struct BudgetingPlan: View {
                             .padding(.vertical, 22)
                             .disabled(budgetInput == 0 || tarifInput == 0)
                             .simultaneousGesture(TapGesture().onEnded({
-                                budgetingViewModel.addBudgeting(tarif: tarifInput ?? 0, biaya: budgetInput ?? 0)
+                                budgetingViewModel.budgetingTools(tarif: tarifInput ?? 0, biaya: budgetInput ?? 0)
                                 tarifInput = 0
                                 budgetInput = 0
                                 print(budgetingViewModel.budgetingList[0])
@@ -119,8 +120,8 @@ struct CustomColor {
     static let disabledColor = Color("disable")
 }
 
-struct BudgetingPlan_Previews: PreviewProvider {
-    static var previews: some View {
-        BudgetingPlan()
-    }
-}
+//struct BudgetingPlan_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BudgetingPlan()
+//    }
+//}
