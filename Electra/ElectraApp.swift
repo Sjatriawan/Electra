@@ -11,7 +11,7 @@ import SwiftUI
 struct ElectraApp: App {
     var body: some Scene {
         WindowGroup {
-            OnBoardingScreen()
+            OnBoarding_Screen()
         }
     }
 }

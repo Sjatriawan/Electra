@@ -175,7 +175,7 @@ struct ProgressBar: View {
                 .rotationEffect(Angle(degrees: -90))
                 .animation(Animation.easeInOut(duration: 1.0))
             VStack{
-                Text("\(toolViewmodell.customFormat(persentase()))%")
+                Text("\(String(format: "%.1f", persentase()))%")
                     .font(.system(size: 22, weight: .semibold, design: .default))
                     .foregroundColor(.white)
                 Text("\(toolViewmodell.customFormat(toolViewmodell.calculateTotalKwh()))/\(toolViewmodell.customFormat(budgetHomeViewmodel.budgetingList[0].kWh))kWh")

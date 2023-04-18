@@ -107,6 +107,7 @@ struct EditScreen: View {
                         HStack{
                             TextField("Pemakaian (jam/hari)", text: self.$usageTimePerHour)
                                 .font(.system(size: 15))
+                                .disabled(true)
                                 .onChange(of: usageTimePerHour) { newValue in
                                     if(Int(newValue) ?? 0 > 24){
                                         usageTimePerHour = "24"
@@ -114,7 +115,6 @@ struct EditScreen: View {
                                         usageTimePerHour = ""
                                     }
                                 }
-                                .keyboardType(.numberPad)
                             Text("jam/hari")
                                 .font(.system(size: 15, weight: .regular))
                                 .foregroundColor(Color("TextColor"))
@@ -155,7 +155,6 @@ struct EditScreen: View {
                 Spacer()
             }
             .padding(35)
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .confirmationAction){
                     Button("Simpan"){
@@ -171,6 +170,15 @@ struct EditScreen: View {
                     }
                 }
             }
+            .toolbar{
+                ToolbarItem(placement: .principal){
+                    Text("Kalkulasi")
+                        .foregroundColor(.black)
+                        .font(.headline)
+                        .padding(.top, 10)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear{
                 addValue()
             }
