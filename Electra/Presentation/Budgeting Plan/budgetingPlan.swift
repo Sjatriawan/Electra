@@ -17,6 +17,10 @@ struct BudgetingPlan: View {
     init(budgetingViewModel: BudgetingViewModel, toolViewModell: ToolViewModel) {
         self.budgetingViewModel = budgetingViewModel
         self.toolViewModell = toolViewModell
+        if !budgetingViewModel.budgetingList.isEmpty{
+            budgetInput = budgetingViewModel.budgetingList[0].biaya
+            tarifInput = budgetingViewModel.budgetingList[0].tarif
+        }
         
         numberFormatter = NumberFormatter()
         numberFormatter.locale = Locale.current
@@ -49,7 +53,7 @@ struct BudgetingPlan: View {
                                     Text("Budget")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Target Tagihan Listrik/Bulan", value: $budgetInput, formatter: numberFormatter
+                                    TextField("Target Tagihan Listrik/Bulan", value: $budgetInput, format: .number
                                     )
                                     .font(.system(size: 15, weight: .regular))
                                     .keyboardType(.decimalPad)
@@ -64,8 +68,7 @@ struct BudgetingPlan: View {
                                     Text("Tarif")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(CustomColor.textColor)
-                                    TextField("Tarif Listrik/kWh", value: $tarifInput, formatter: numberFormatter)
-                                    
+                                    TextField("Tarif Listrik/kWh", value: $tarifInput, format: .number)
                                         .font(.system(size: 15, weight: .regular))
                                         .keyboardType(.decimalPad)
                                         .overlay(VStack{Divider().offset(x: 0, y: 15)})
